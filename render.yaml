@@ -1,0 +1,16 @@
+# API (back) gratuita na Render. O site (front) fica na Vercel. Veja o README.
+services:
+  - type: web
+    name: conecta-escola-api
+    runtime: node
+    plan: free
+    buildCommand: echo "sem build"
+    startCommand: node server/index.mjs
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: CODE_SECRET
+        generateValue: true
+      - key: FORMS_JSON
+        sync: false   # cole aqui o conteúdo do forms.local.json
