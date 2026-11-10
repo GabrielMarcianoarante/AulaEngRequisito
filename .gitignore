@@ -2,5 +2,10 @@ node_modules
 .next
 next-env.d.ts
 
+# Arquivos locais e de ambiente com credenciais / tokens
+.env
+.env.local
+.env.*.local
 forms.local.json
 cartazes.html
+publicar.sh
