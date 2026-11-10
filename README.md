@@ -32,15 +32,13 @@
 
 ## Navegação
 
-| | |
-|:---|:---|
-| **01.** [Visão Geral do Projeto](#visão-geral-do-projeto) | **06.** [Tecnologias e Arquitetura](#tecnologias-e-arquitetura) |
-| **02.** [Elicitação e Pesquisa de Campo](#elicitação-e-pesquisa-de-campo-discovery) | **07.** [Padrões de Design](#42-padrões-de-design) |
-| **03.** [Stakeholders e Requisitos](#stakeholders-e-requisitos-do-sistema) | **08.** [Estrutura do Repositório](#estrutura-do-repositório) |
-| **04.** [Modelagem e Casos de Uso](#modelagem-e-casos-de-uso) | **09.** [Licença](#licença) |
-| **05.** [Documentação e Artefatos](#documentação-e-artefatos-do-projeto) | |
-
+| Material | Descrição | Acesso |
+|---|---|---|
+| Diagrama de Casos de Uso — UML | Representação dos atores e das funcionalidades do sistema. | [Visualizar UML](./Unidade_5/UML) |
+| Lean Canvas | Modelo visual da proposta de valor e estrutura do projeto. | [Acessar Lean Canvas](./Unidade_5/Lean_Canvas/Canvas.png) |
+| Documentação do Projeto | Documentação acadêmica e especificação do projeto em PDF. | [Visualizar PDF](./Unidade_5/Documentação.pdf) |
 ---
+
 
 ## Visão Geral do Projeto
 
