@@ -99,9 +99,6 @@ O escopo do projeto contempla quatro papéis principais de usuários (*stakehold
 - **Comunicação Institucional:** emissão de avisos gerais e agendamento de reuniões pedagógicas.
 - **Articulação:** conexão entre equipe gestora, especialistas e corpo docente.
 ---
-## Documentação e Artefatos do Projeto
-
-Esta seção reúne os materiais acadêmicos e técnicos produzidos durante o desenvolvimento do Conecta Escola.
 
 ## Documentação e Artefatos do Projeto
 
