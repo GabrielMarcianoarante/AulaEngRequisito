@@ -98,17 +98,7 @@ O escopo do projeto contempla quatro papéis principais de usuários (*stakehold
 - **Atendimento Educacional Especializado:** acompanhamento individualizado e histórico de adaptações de provas e materiais para alunos neurodivergentes.
 - **Comunicação Institucional:** emissão de avisos gerais e agendamento de reuniões pedagógicas.
 - **Articulação:** conexão entre equipe gestora, especialistas e corpo docente.
-
 ---
-
-## Modelagem e Casos de Uso
-
-Como parte dos entregáveis da disciplina de Engenharia de Requisitos, a modelagem conceitual e o diagrama de casos de uso estão disponíveis no material abaixo.
-
-- **[Diagrama de Casos de Uso — UML (ClickUp Whiteboard)](https://sharing.clickup.com/90171556243/wb/h/2kza9gck-1557/ab6c3f1d0e93ef5)**
-
----
-
 ## Documentação e Artefatos do Projeto
 
 Esta seção reúne os materiais acadêmicos e técnicos produzidos durante o desenvolvimento do Conecta Escola.
