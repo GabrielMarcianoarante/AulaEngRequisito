@@ -109,7 +109,7 @@ O escopo do projeto contempla quatro papéis principais de usuários (*stakehold
 | Documentação do Projeto | Documentação acadêmica e especificação do projeto em PDF. | [Visualizar PDF](./Unidade_5/Documentação.pdf) |
 ---
 
-## 3.2 Tecnologias Utilizadas
+## Tecnologias Utilizadas
 
 ### Linguagens e Frameworks
 - **[Java](https://www.java.com):** linguagem de programação utilizada no desenvolvimento de aplicações.
