@@ -14,28 +14,4 @@
   --font-sans: "Atkinson Hyperlegible", ui-sans-serif, system-ui, sans-serif;
   --font-hand: "Kalam", "Segoe Print", cursive;
 }
-html { scroll-behavior: smooth; scroll-padding-top: 5rem; background: #14301f; }
-body { background: #14301f; color: #fff; -webkit-font-smoothing: antialiased; overflow-x: clip; }
-::selection { background: #f5b82e; color: #000; }
-:focus-visible { outline: 3px solid #f5b82e; outline-offset: 3px; }
-.on-orange :focus-visible { outline-color: #000; }
-.wrap { width: 100%; max-width: 80rem; margin-inline: auto; padding-inline: clamp(1.25rem, 4.5vw, 2.5rem); }
 
-/* textura pontilhada (dither), como nas telas retrô */
-.grid-dark, .grid-orange { background-image: radial-gradient(rgba(223,243,200,.09) 1.2px, transparent 1.4px); background-size: 7px 7px; }
-.grid-orange { background-image: radial-gradient(rgba(20,48,31,.16) 1.2px, transparent 1.4px); }
-@keyframes mq { to { transform: translateX(-50%); } }
-.marquee { animation: mq 28s linear infinite; }
-
-.ghost-text { color: rgba(255,255,255,.5); }
-.lit-text { color: rgba(255,255,255,.62); }
-.grain::after { content: none; }
-.hand { font-family: var(--font-hand); }
-@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
-
-/* responsividade: sem rolagem lateral, textos quebram e campos não dão zoom no iPhone */
-html { -webkit-text-size-adjust: 100%; }
-img, svg, video { max-width: 100%; }
-h1, h2, h3, p, li { overflow-wrap: break-word; }
-input, button, select, textarea { font-size: 16px; }
-@media (max-width: 640px) { .wrap { padding-inline: 1rem; } }
