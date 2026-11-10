@@ -124,17 +124,39 @@ Esta seção reúne os materiais acadêmicos e técnicos produzidos durante o de
 | Documentação do Projeto | Documentação acadêmica e especificação do projeto em PDF. | [Visualizar PDF](./Unidade_5/Documentação.pdf) |
 ---
 
-## Tecnologias e Arquitetura
+## 3.2 Tecnologias Utilizadas
 
-O projeto adota uma stack moderna, priorizando acessibilidade, modularidade e desempenho.
-
+### Linguagens e Frameworks
+- **[Java](https://www.java.com):** linguagem de programação utilizada no desenvolvimento de aplicações.
+- **[Python](https://www.python.org):** linguagem utilizada para processamento de dados e funcionalidades de inteligência artificial.
+- **[JavaScript](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript):** linguagem utilizada no desenvolvimento de funcionalidades interativas.
+- **[TypeScript 5.6](https://www.typescriptlang.org):** tipagem estática para garantir maior segurança e consistência no código.
 - **[Next.js 15](https://nextjs.org):** framework React com App Router, Server Components e rotas dinâmicas de API.
 - **[React 19](https://react.dev):** construção declarativa de interfaces reativas e componentização.
-- **[TypeScript 5.6](https://www.typescriptlang.org):** tipagem estática em toda a base de código, garantindo consistência entre front-end e APIs.
-- **[Tailwind CSS v4](https://tailwindcss.com):** motor de estilos utility-first com design system baseado em tokens semânticos.
-- **[Motion](https://motion.dev):** biblioteca de animações com suporte a preferências de acessibilidade, incluindo `prefers-reduced-motion`.
-- **[Lucide React](https://lucide.dev):** conjunto de ícones vetoriais consistentes e semânticos.
-- **[Node.js](https://nodejs.org):** ambiente de execução utilizado na camada de servidor, incluindo validação de tokens, assinaturas HMAC-SHA256 e controle de fluxo.
+
+### Banco de Dados
+- **[MySQL](https://www.mysql.com):** sistema de gerenciamento de banco de dados relacional.
+- **[PostgreSQL](https://www.postgresql.org):** banco de dados relacional utilizado para armazenamento e gerenciamento de informações.
+
+### Ferramentas e Bibliotecas
+- **[Figma](https://www.figma.com):** criação de protótipos e desenvolvimento de interfaces.
+- **[Tailwind CSS v4](https://tailwindcss.com):** estilização de interfaces com abordagem utility-first e tokens semânticos.
+- **[GSAP](https://gsap.com):** biblioteca para criação de animações e transições.
+- **[Motion](https://motion.dev):** biblioteca de animações com suporte a preferências de acessibilidade.
+- **[Lucide React](https://lucide.dev):** conjunto de ícones vetoriais.
+- **[Node.js](https://nodejs.org):** ambiente de execução JavaScript utilizado na camada de servidor.
+- **[ChatGPT](https://chatgpt.com):** ferramenta de apoio à inteligência artificial, pesquisa e desenvolvimento.
+
+### Segurança
+- **[HTTPS](https://developer.mozilla.org/pt-BR/docs/Glossary/HTTPS):** protocolo de comunicação segura entre cliente e servidor.
+- **[Auth0](https://auth0.com):** plataforma de autenticação e gerenciamento de identidade.
+- **[JWT](https://jwt.io):** padrão de tokens para transmissão segura de informações de autenticação.
+- **HMAC-SHA256:** algoritmo de assinatura utilizado para validação da integridade e autenticidade de tokens.
+
+### Base de Conhecimento da IA e do Sistema
+- **BNCC:** Base Nacional Comum Curricular.
+- **PEI:** Plano Educacional Individualizado.
+- **PNAE:** Programa Nacional de Alimentação Escolar.
 
 ---
 
