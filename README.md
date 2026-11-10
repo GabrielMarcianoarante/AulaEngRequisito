@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="src/app/icon.svg" width="96" height="96" alt="Conecta Escola Logo" style="border-radius: 8px;">
+  <img src="public/escola-animada.svg" width="96" height="96" alt="Conecta Escola Logo" style="border-radius: 8px;">
 </p>
 
 <h1 align="center">Conecta Escola</h1>
