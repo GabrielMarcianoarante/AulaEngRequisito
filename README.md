@@ -189,7 +189,7 @@ Para garantir que alunos e pais neurodivergentes acompanhem as rotinas sem perda
   - Telas de confirmação modal para ações destrutivas ou irreversíveis, como exclusão de laudo médico, efetivação de transferência ou remoção de aluno.
   - Salvamento automático do rascunho de planos de aula do professor e dos registros de trabalhos dos alunos, evitando perda de dados por queda de conexão.
 
-### 4.2.5. Privacidade e Acessibilidade Complementar
+### Privacidade e Acessibilidade Complementar
 
 - **Navegação por Teclado:** suporte à navegação por teclado, com foco visual identificável e atalhos de salto de conteúdo (*Skip Link*).
 - **Respeito às Preferências do Usuário:** adaptação de transições e elementos visuais para usuários que ativam `prefers-reduced-motion`.
