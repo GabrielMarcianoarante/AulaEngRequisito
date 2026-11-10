@@ -160,13 +160,13 @@ Esta seção reúne os materiais acadêmicos e técnicos produzidos durante o de
 
 ---
 
-## 4.2. Padrões de Design
+## Padrões de Design
 
 A interface do sistema foi concebida sob os princípios do **Design Universal**, da **Psicologia Cognitiva aplicada à Educação** e das diretrizes internacionais de acessibilidade **WCAG 2.1 — nível AA**.
 
 Considerando que o público final de estudantes compreende alunos do Ensino Fundamental II (6º ao 9º ano) e do Ensino Médio (1º ao 3º ano), na faixa etária entre 11 e 18 anos, a interface abandona elementos infantis e adota uma linguagem visual contemporânea, dinâmica e focada em autonomia, produtividade e inclusão.
 
-### 4.2.1. Adaptação Etária e Interface para EF2 e Ensino Médio
+###  Adaptação Etária e Interface para EF2 e Ensino Médio
 
 - **Linguagem Visual Contemporânea e Não Infantilizada:** design baseado em cartões (*cards*), abas bem definidas e estética limpa (*Clean UI*), similar aos aplicativos de produtividade e organização cotidianos do público jovem, como [Notion](https://www.notion.com/), [Canva](https://www.canva.com/) e plataformas de *e-learning*.
 - **Foco em Autonomia e Gestão do Tempo:**
@@ -174,7 +174,7 @@ Considerando que o público final de estudantes compreende alunos do Ensino Fund
   - **Visualizações Flexíveis:** opção de alternar entre exibições em **Lista**, **Calendário** ou **Kanban** para o acompanhamento de trabalhos e projetos.
   - **Barras de Progresso e Indicadores Visuais:** indicadores gráficos de percentual de conclusão de tarefas e itinerários de estudo, estimulando a autorregulação do aprendizado sem poluição visual.
 
-### 4.2.2. Acessibilidade e Design Inclusivo para Neurodivergentes (TDAH, TEA e Dislexia)
+### Acessibilidade e Design Inclusivo para Neurodivergentes (TDAH, TEA e Dislexia)
 
 Para garantir que alunos e pais neurodivergentes acompanhem as rotinas sem perda de informações ou sobrecarga sensorial, foram estabelecidos os seguintes padrões:
 
@@ -188,7 +188,7 @@ Para garantir que alunos e pais neurodivergentes acompanhem as rotinas sem perda
   - A transmissão de informações e status, como "Pendente", "Concluído" e "Alerta de Alergia", nunca depende exclusivamente da cor. Todos os alertas combinam **ícones universais + rótulo de texto + padrão de cor contrastante**, atendendo também a usuários daltônicos.
   - Paleta de cores neutra e equilibrada no tema padrão, com tons suaves de azul e cinza, evitando cores saturadas ou estroboscópicas que possam causar hiperestimulação visual.
 
-### 4.2.3. Arquitetura de Informação e Padrões de Navegação
+### Arquitetura de Informação e Padrões de Navegação
 
 - **Regra dos 3 Cliques:** a arquitetura de navegação é estruturada de forma rasa, buscando garantir que qualquer funcionalidade principal, como boletim, diário de classe, envio de laudos ou consulta de frequência no refeitório, possa ser acessada em no máximo três interações a partir da tela inicial.
 - **Abordagem Mobile-First e Responsividade:**
@@ -196,7 +196,7 @@ Para garantir que alunos e pais neurodivergentes acompanhem as rotinas sem perda
   - **Professores e Coordenadores:** layouts expansíveis para telas de desktop e tablets, otimizando o fluxo de digitação de notas e elaboração de planos de aula.
   - **Ponto de Leitura do Refeitório:** interface dedicada de alta velocidade, ajustada para visualização em modo paisagem (*landscape*) em tablets, com contraste elevado para rápida identificação pelo operador.
 
-### 4.2.4. Feedback do Sistema e Prevenção de Erros
+### Feedback do Sistema e Prevenção de Erros
 
 - **Microinterações e Feedback Instantâneo:** todas as ações do usuário, como envio de formulário, salvamento de nota e leitura de QR Code, recebem confirmação imediata por meio de notificações flutuantes (*toast notifications*), indicadores visuais de progresso (*skeleton screens* ou *spinners*) ou sinais sonoros discretos, no caso da validação no refeitório.
 - **Prevenção e Mitigação de Erros:**
