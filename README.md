@@ -1,4 +1,4 @@
-<p align="center">
+ <p align="center">
   <a href="https://conecta-escola-sepia.vercel.app/">
     <img src="public/conecta-escola-logo.png" width="560" alt="Conecta Escola — Educação mais conectada, transparente e inclusiva">
   </a>
@@ -25,8 +25,20 @@
   <a href="https://tailwindcss.com"><img src="https://img.shields.io/badge/Tailwind_CSS-v4-38bdf8?style=flat-square&logo=tailwindcss" alt="Tailwind CSS"></a>
   <a href="https://nodejs.org"><img src="https://img.shields.io/badge/Node.js-%3E%3D20-339933?style=flat-square&logo=node.js" alt="Node.js"></a>
   <img src="https://img.shields.io/badge/Disciplina-Engenharia_de_Requisitos-0e1a33?style=flat-square" alt="Engenharia de Requisitos">
-  <a href="LICENSE"><img src="https://img.shields.io/badge/Licen%C3%A7a-MIT-yellow?style=flat-square" alt="Licença"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/Licença-MIT-yellow?style=flat-square" alt="Licença"></a>
 </p>
+
+---
+
+## Navegação
+
+| | |
+|:---|:---|
+| **01.** [Visão Geral do Projeto](#visão-geral-do-projeto) | **06.** [Tecnologias e Arquitetura](#tecnologias-e-arquitetura) |
+| **02.** [Elicitação e Pesquisa de Campo](#elicitação-e-pesquisa-de-campo-discovery) | **07.** [Padrões de Design](#42-padrões-de-design) |
+| **03.** [Stakeholders e Requisitos](#stakeholders-e-requisitos-do-sistema) | **08.** [Estrutura do Repositório](#estrutura-do-repositório) |
+| **04.** [Modelagem e Casos de Uso](#modelagem-e-casos-de-uso) | **09.** [Licença](#licença) |
+| **05.** [Documentação e Artefatos](#documentação-e-artefatos-do-projeto) | |
 
 ---
 
@@ -34,7 +46,7 @@
 
 No contexto escolar público, a comunicação entre a instituição e a comunidade frequentemente ocorre de forma fragmentada ou tardia: notas e faltas consolidadas apenas em reuniões bimestrais, recados em agendas de papel sujeitos a perdas e pouca visibilidade sobre a rotina de sala de aula.
 
-Esse distanciamento torna-se ainda mais crítico no acompanhamento de **estudantes com necessidades específicas e neurodivergentes** (como TEA, TDAH e altas habilidades). Nesses cenários, informações sobre laudos, adaptações curriculares e orientações de especialistas multidisciplinares frequentemente não chegam a tempo a quem está na ponta do ensino.
+Esse distanciamento torna-se ainda mais crítico no acompanhamento de **estudantes com necessidades específicas e neurodivergentes**, como TEA, TDAH e altas habilidades. Nesses cenários, informações sobre laudos, adaptações curriculares e orientações de especialistas multidisciplinares frequentemente não chegam a tempo a quem está na ponta do ensino.
 
 O **Conecta Escola** nasce como uma proposta de software desenhada para atuar como ponte entre esses atores, centralizando informações acadêmicas, rotinas escolares e canais transparentes de comunicação.
 
@@ -42,9 +54,9 @@ O **Conecta Escola** nasce como uma proposta de software desenhada para atuar co
 
 ## Elicitação e Pesquisa de Campo (Discovery)
 
-Na fase atual de Engenharia de Requisitos, a aplicação opera prioritariamente como ferramenta de **validação de hipóteses e levantamento de necessidades reais** (Discovery). 
+Na fase de Engenharia de Requisitos, a aplicação opera prioritariamente como ferramenta de **validação de hipóteses e levantamento de necessidades reais** (Discovery).
 
-Em vez de assumir requisitos prévios em sala de aula, o projeto estruturou uma pesquisa de campo segmentada por ambiente para ouvir as dores dos diferentes perfis:
+Em vez de assumir requisitos prévios em sala de aula, o projeto estruturou uma pesquisa de campo segmentada por ambiente para ouvir as necessidades dos diferentes perfis:
 
 ```text
 [Ambiente Escolar]
@@ -54,73 +66,136 @@ Em vez de assumir requisitos prévios em sala de aula, o projeto estruturou uma 
 ```
 
 ### Mecanismos de Integridade da Coleta
-- **Triagem por Perfil:** Cada ponto físico da escola conta com um QR Code com identificador de perfil e código de acesso, assegurando que o entrevistado responda ao formulário correspondente à sua vivência.
-- **Isolamento de Dados:** As URLs reais dos formulários de pesquisa permanecem isoladas no servidor, sem exposição no front-end.
-- **Controle de Respostas:** O acesso utiliza assinaturas HMAC e cookies de sessão (`HttpOnly`) para inibir respostas duplicadas no mesmo dispositivo, mantendo a amostragem íntegra para análise quantitativa e qualitativa.
+
+- **Triagem por Perfil:** cada ponto físico da escola conta com um QR Code com identificador de perfil e código de acesso, direcionando o entrevistado ao formulário correspondente à sua vivência.
+- **Isolamento de Dados:** as URLs reais dos formulários de pesquisa permanecem isoladas no servidor, sem exposição no front-end.
+- **Controle de Respostas:** o acesso utiliza assinaturas HMAC e cookies de sessão (`HttpOnly`) para inibir respostas duplicadas no mesmo dispositivo, mantendo a amostragem íntegra para análise quantitativa e qualitativa.
 
 ---
 
 ## Stakeholders e Requisitos do Sistema
 
-O escopo do projeto contempla quatro papéis principais de usuários (stakeholders), com necessidades e requisitos funcionais mapeados:
+O escopo do projeto contempla quatro papéis principais de usuários (*stakeholders*), com necessidades e requisitos funcionais mapeados.
 
 ### 1. Alunos
-- **Acompanhamento de Desempenho:** Acesso simplificado a notas, médias e frequência por disciplina.
-- **Gestão de Tarefas:** Visualização de prazos de entregas, trabalhos e atividades da semana em linguagem direta.
-- **Canal de Avisos:** Recebimento de notificações da escola e comunicados sobre eventos e datas letivas.
+
+- **Acompanhamento de Desempenho:** acesso simplificado a notas, médias e frequência por disciplina.
+- **Gestão de Tarefas:** visualização de prazos de entregas, trabalhos e atividades da semana em linguagem direta.
+- **Canal de Avisos:** recebimento de notificações da escola e comunicados sobre eventos e datas letivas.
 
 ### 2. Pais e Responsáveis
-- **Visibilidade Contínua:** Acompanhamento do progresso acadêmico e assiduidade sem depender exclusivamente do boletim físico.
-- **Histórico e Laudos:** Centralização do registro de laudos, recomendações de terapeutas e solicitações de adaptações.
-- **Comunicação Direta:** Canal formal e organizado para alinhamento com professores e coordenação pedagógica.
+
+- **Visibilidade Contínua:** acompanhamento do progresso acadêmico e assiduidade sem depender exclusivamente do boletim físico.
+- **Histórico e Laudos:** centralização do registro de laudos, recomendações de terapeutas e solicitações de adaptações.
+- **Comunicação Direta:** canal formal e organizado para alinhamento com professores e coordenação pedagógica.
 
 ### 3. Professores
-- **Organização de Aulas:** Estrutura para planejamento de aulas alinhadas à Base Nacional Comum Curricular (BNCC).
-- **Visão da Turma:** Panorama do ritmo de aprendizagem, engajamento e entregas dos estudantes ao longo do período.
-- **Apoio Pedagógico:** Registro contínuo de observações individuais sobre dificuldades e evolução em sala.
+
+- **Organização de Aulas:** estrutura para planejamento de aulas alinhadas à Base Nacional Comum Curricular (BNCC).
+- **Visão da Turma:** panorama do ritmo de aprendizagem, engajamento e entregas dos estudantes ao longo do período.
+- **Apoio Pedagógico:** registro contínuo de observações individuais sobre dificuldades e evolução em sala.
 
 ### 4. Coordenação Pedagógica e Sala de Recursos (AEE)
-- **Atendimento Educacional Especializado:** Acompanhamento individualizado e histórico de adaptações de provas e materiais para alunos neurodivergentes.
-- **Comunicação Institucional:** Emissão de avisos gerais e agendamento de reuniões pedagógicas.
-- **Articulação:** Conexão entre equipe gestora, especialistas (psicologia, psicopedagogia) e o corpo docente.
+
+- **Atendimento Educacional Especializado:** acompanhamento individualizado e histórico de adaptações de provas e materiais para alunos neurodivergentes.
+- **Comunicação Institucional:** emissão de avisos gerais e agendamento de reuniões pedagógicas.
+- **Articulação:** conexão entre equipe gestora, especialistas e corpo docente.
 
 ---
 
 ## Modelagem e Casos de Uso
 
-Como parte dos entregáveis da disciplina de Engenharia de Requisitos, a modelagem conceitual e o diagrama de casos de uso estão disponíveis no link abaixo:
+Como parte dos entregáveis da disciplina de Engenharia de Requisitos, a modelagem conceitual e o diagrama de casos de uso estão disponíveis no material abaixo.
 
-- **[Diagrama de Casos de Uso (ClickUp Whiteboard)](https://sharing.clickup.com/90171556243/wb/h/2kza9gck-1557/ab6c3f1d0e93ef5)**
+- **[Diagrama de Casos de Uso — UML (ClickUp Whiteboard)](https://sharing.clickup.com/90171556243/wb/h/2kza9gck-1557/ab6c3f1d0e93ef5)**
 
+---
+
+## Documentação e Artefatos do Projeto
+
+Esta seção reúne os materiais acadêmicos e técnicos produzidos durante o desenvolvimento do Conecta Escola.
+
+## Documentação e Artefatos do Projeto
+
+| Material | Descrição | Acesso |
+|---|---|---|
+| Diagrama de Casos de Uso — UML | Representação dos atores e das funcionalidades do sistema. | [Visualizar UML](./Unidade_5/Lean_Canvas/Canvas.png) |
+| Lean Canvas | Modelo visual da proposta de valor e estrutura do projeto. | [Acessar Lean Canvas](./Unidade_5/UML/uml.png) |
+| Documentação do Projeto | Documentação acadêmica e especificação do projeto em PDF. | [Visualizar PDF](./Unidade_5/Documentação.pdf) |
 ---
 
 ## Tecnologias e Arquitetura
 
-O projeto adota uma stack moderna, priorizando acessibilidade, modularidade e desempenho:
+O projeto adota uma stack moderna, priorizando acessibilidade, modularidade e desempenho.
 
-- **[Next.js 15](https://nextjs.org/)**: Framework React com App Router, Server Components e rotas dinâmicas de API.
-- **[React 19](https://react.dev/)**: Construção declarativa de interfaces reativas e componentização limpa.
-- **[TypeScript 5.6](https://www.typescriptlang.org/)**: Tipagem estática em toda a base de código, garantindo consistência entre front-end e APIs.
-- **[Tailwind CSS v4](https://tailwindcss.com/)**: Motor de estilos utility-first de alta performance com design system baseado em alto contraste e tokens semânticos.
-- **[Motion](https://motion.dev/)**: Biblioteca de animações físicas com suporte nativo a preferências de acessibilidade (`prefers-reduced-motion`).
-- **[Lucide React](https://lucide.dev/)**: Conjunto de ícones vetoriais consistentes e semânticos.
-- **[Node.js](https://nodejs.org/)**: Camada de backend leve para validação de tokens em tempo constante (`timingSafeEqual`), assinaturas HMAC-SHA256 e controle de fluxo.
+- **[Next.js 15](https://nextjs.org):** framework React com App Router, Server Components e rotas dinâmicas de API.
+- **[React 19](https://react.dev):** construção declarativa de interfaces reativas e componentização.
+- **[TypeScript 5.6](https://www.typescriptlang.org):** tipagem estática em toda a base de código, garantindo consistência entre front-end e APIs.
+- **[Tailwind CSS v4](https://tailwindcss.com):** motor de estilos utility-first com design system baseado em tokens semânticos.
+- **[Motion](https://motion.dev):** biblioteca de animações com suporte a preferências de acessibilidade, incluindo `prefers-reduced-motion`.
+- **[Lucide React](https://lucide.dev):** conjunto de ícones vetoriais consistentes e semânticos.
+- **[Node.js](https://nodejs.org):** ambiente de execução utilizado na camada de servidor, incluindo validação de tokens, assinaturas HMAC-SHA256 e controle de fluxo.
 
 ---
 
-## Princípios de Design e Acessibilidade
+## 4.2. Padrões de Design
 
-Para garantir que a plataforma seja acessível a todos os perfis da comunidade escolar, foram estabelecidas as seguintes diretrizes:
+A interface do sistema foi concebida sob os princípios do **Design Universal**, da **Psicologia Cognitiva aplicada à Educação** e das diretrizes internacionais de acessibilidade **WCAG 2.1 — nível AA**.
 
-- **Acessibilidade Visual:** Contraste elevado, tipografia legível ([Atkinson Hyperlegible](https://brailleinstitute.org/freefont) e fontes legíveis para diferentes condições de visão) e suporte completo a navegação por teclado com atalhos de salto de conteúdo (`Skip link`).
-- **Respeito ao Usuário (`prefers-reduced-motion`):** As transições e elementos visuais adaptam-se automaticamente para usuários sensíveis a movimento em tela.
-- **Privacidade por Padrão (Privacy by Design):** As telas conceituais utilizam exclusivamente dados fictícios. Nenhuma informação pessoal ou diagnóstico sensível de estudantes é exposto publicamente.
+Considerando que o público final de estudantes compreende alunos do Ensino Fundamental II (6º ao 9º ano) e do Ensino Médio (1º ao 3º ano), na faixa etária entre 11 e 18 anos, a interface abandona elementos infantis e adota uma linguagem visual contemporânea, dinâmica e focada em autonomia, produtividade e inclusão.
+
+### 4.2.1. Adaptação Etária e Interface para EF2 e Ensino Médio
+
+- **Linguagem Visual Contemporânea e Não Infantilizada:** design baseado em cartões (*cards*), abas bem definidas e estética limpa (*Clean UI*), similar aos aplicativos de produtividade e organização cotidianos do público jovem, como [Notion](https://www.notion.com/), [Canva](https://www.canva.com/) e plataformas de *e-learning*.
+- **Foco em Autonomia e Gestão do Tempo:**
+  - **Painel de Bordo Centralizado:** visualização clara das tarefas pendentes, próximas avaliações e alertas organizados por ordem cronológica e nível de prioridade.
+  - **Visualizações Flexíveis:** opção de alternar entre exibições em **Lista**, **Calendário** ou **Kanban** para o acompanhamento de trabalhos e projetos.
+  - **Barras de Progresso e Indicadores Visuais:** indicadores gráficos de percentual de conclusão de tarefas e itinerários de estudo, estimulando a autorregulação do aprendizado sem poluição visual.
+
+### 4.2.2. Acessibilidade e Design Inclusivo para Neurodivergentes (TDAH, TEA e Dislexia)
+
+Para garantir que alunos e pais neurodivergentes acompanhem as rotinas sem perda de informações ou sobrecarga sensorial, foram estabelecidos os seguintes padrões:
+
+- **Modo de Foco (Redução de Carga Cognitiva):**
+  - Mecanismo de alternância de tela que oculta menus laterais, notificações secundárias e elementos decorativos, mantendo visível apenas o conteúdo de leitura ou execução de tarefas atual.
+  - Animações funcionais e suaves, com duração máxima de 200 ms, e opção de desativação global por meio de `prefers-reduced-motion`.
+- **Tipografia e Ajustes Visuais:**
+  - Família tipográfica de alta legibilidade, como [Inter](https://rsms.me/inter/) ou [Roboto](https://fonts.google.com/specimen/Roboto), com escala tipográfica hierárquica clara.
+  - Suporte à ativação de fonte alternativa adaptada para dislexia, como [OpenDyslexic](https://opendyslexic.org/), e controles simples para aumento do tamanho da fonte e do espaçamento entre linhas.
+- **Comunicação Multimodal e Código de Cores:**
+  - A transmissão de informações e status, como "Pendente", "Concluído" e "Alerta de Alergia", nunca depende exclusivamente da cor. Todos os alertas combinam **ícones universais + rótulo de texto + padrão de cor contrastante**, atendendo também a usuários daltônicos.
+  - Paleta de cores neutra e equilibrada no tema padrão, com tons suaves de azul e cinza, evitando cores saturadas ou estroboscópicas que possam causar hiperestimulação visual.
+
+### 4.2.3. Arquitetura de Informação e Padrões de Navegação
+
+- **Regra dos 3 Cliques:** a arquitetura de navegação é estruturada de forma rasa, buscando garantir que qualquer funcionalidade principal, como boletim, diário de classe, envio de laudos ou consulta de frequência no refeitório, possa ser acessada em no máximo três interações a partir da tela inicial.
+- **Abordagem Mobile-First e Responsividade:**
+  - **Estudantes e Pais:** interfaces otimizadas primariamente para telas de smartphones, com alvos de toque (*touch targets*) de no mínimo **48 × 48 px**, facilitando o uso em trânsito e em dispositivos móveis mais simples.
+  - **Professores e Coordenadores:** layouts expansíveis para telas de desktop e tablets, otimizando o fluxo de digitação de notas e elaboração de planos de aula.
+  - **Ponto de Leitura do Refeitório:** interface dedicada de alta velocidade, ajustada para visualização em modo paisagem (*landscape*) em tablets, com contraste elevado para rápida identificação pelo operador.
+
+### 4.2.4. Feedback do Sistema e Prevenção de Erros
+
+- **Microinterações e Feedback Instantâneo:** todas as ações do usuário, como envio de formulário, salvamento de nota e leitura de QR Code, recebem confirmação imediata por meio de notificações flutuantes (*toast notifications*), indicadores visuais de progresso (*skeleton screens* ou *spinners*) ou sinais sonoros discretos, no caso da validação no refeitório.
+- **Prevenção e Mitigação de Erros:**
+  - Formulários com validação em tempo real e mensagens de erro explicativas localizadas diretamente abaixo do campo com falha.
+  - Telas de confirmação modal para ações destrutivas ou irreversíveis, como exclusão de laudo médico, efetivação de transferência ou remoção de aluno.
+  - Salvamento automático do rascunho de planos de aula do professor e dos registros de trabalhos dos alunos, evitando perda de dados por queda de conexão.
+
+### 4.2.5. Privacidade e Acessibilidade Complementar
+
+- **Navegação por Teclado:** suporte à navegação por teclado, com foco visual identificável e atalhos de salto de conteúdo (*Skip Link*).
+- **Respeito às Preferências do Usuário:** adaptação de transições e elementos visuais para usuários que ativam `prefers-reduced-motion`.
+- **Privacidade por Padrão (*Privacy by Design*):** as telas conceituais utilizam dados fictícios. Informações pessoais ou diagnósticos sensíveis de estudantes não devem ser expostos publicamente.
+
+**Referências de acessibilidade:** [Diretrizes WCAG 2.1 — W3C](https://www.w3.org/TR/WCAG21/).
+
 
 ---
 
 ## Estrutura do Repositório
 
-A organização dos arquivos reflete a separação entre a camada de apresentação conceitual, os controladores de acesso da pesquisa e as rotas da aplicação:
+A organização dos arquivos reflete a separação entre a camada de apresentação conceitual, os controladores de acesso da pesquisa e as rotas da aplicação.
 
 ```text
 SiteProjetoFinal/
@@ -141,7 +216,7 @@ SiteProjetoFinal/
 │   │   ├── Navbar.tsx           # Navegação principal e atalho para a pesquisa
 │   │   ├── Art.tsx              # Componentes visuais e ilustrações
 │   │   ├── Halftone.tsx         # Efeitos visuais e texturas gráficas
-│   │   └── ui.tsx               # Primitivas de interface reutilizáveis (botões, modais, cards)
+│   │   └── ui.tsx               # Primitivas de interface reutilizáveis
 │   │
 │   └── lib/
 │       ├── acesso.ts            # Gerenciamento de estado de acesso e verificação de token no cliente
@@ -156,7 +231,7 @@ SiteProjetoFinal/
 ├── scripts/
 │   └── cartazes.mjs             # Gerador de cartazes A4 com QR codes vetoriais para pesquisa de campo
 │
-├── forms.local.example.json     # Exemplo de mapeamento de formulários por perfil (mantido fora do git)
+├── forms.local.example.json     # Exemplo de mapeamento de formulários por perfil
 ├── render.yaml                  # Blueprint de infraestrutura para backend desacoplado
 ├── next.config.ts               # Configuração do Next.js e rewrites para microsserviços
 └── tsconfig.json                # Configuração do compilador TypeScript
