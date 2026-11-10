@@ -78,6 +78,14 @@ O escopo do projeto contempla quatro papéis principais de usuários (stakeholde
 
 ---
 
+## Modelagem e Casos de Uso
+
+Como parte dos entregáveis da disciplina de Engenharia de Requisitos, a modelagem conceitual e o diagrama de casos de uso estão disponíveis no link abaixo:
+
+- **[Diagrama de Casos de Uso (ClickUp Whiteboard)](https://sharing.clickup.com/90171556243/wb/h/2kza9gck-1557/ab6c3f1d0e93ef5)**
+
+---
+
 ## Tecnologias e Arquitetura
 
 O projeto adota uma stack moderna, priorizando acessibilidade, modularidade e desempenho:
