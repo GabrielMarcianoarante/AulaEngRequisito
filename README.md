@@ -119,7 +119,7 @@ Esta seção reúne os materiais acadêmicos e técnicos produzidos durante o de
 
 | Material | Descrição | Acesso |
 |---|---|---|
-| Diagrama de Casos de Uso — UML | Representação dos atores e das funcionalidades do sistema. | [Visualizar UML](./Unidade_5/Lean_Canvas/Canvas.png) |
+| Diagrama de Casos de Uso — UML | Representação dos atores e das funcionalidades do sistema. | [Visualizar UML](./Unidade_5/Lean_Canvas) |
 | Lean Canvas | Modelo visual da proposta de valor e estrutura do projeto. | [Acessar Lean Canvas](./Unidade_5/UML/uml.png) |
 | Documentação do Projeto | Documentação acadêmica e especificação do projeto em PDF. | [Visualizar PDF](./Unidade_5/Documentação.pdf) |
 ---
