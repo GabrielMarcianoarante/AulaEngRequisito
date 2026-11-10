@@ -1,64 +1,78 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="-1 -1 14 13" shape-rendering="crispEdges" width="280" height="260">
-  <!-- Fundo verde oficial do Conecta Escola -->
+  <style>
+    @keyframes pulseLeft {
+      0%, 100% { fill: #14301f; }
+      20%, 70% { fill: #f5b82e; }
+    }
+    @keyframes pulseRight {
+      0%, 33%, 100% { fill: #14301f; }
+      53%, 85% { fill: #f5b82e; }
+    }
+    .win-left {
+      animation: pulseLeft 2.4s infinite ease-in-out;
+    }
+    .win-right {
+      animation: pulseRight 2.4s infinite ease-in-out;
+    }
+  </style>
+
+  <!-- Fundo verde oficial -->
   <rect x="-1" y="-1" width="14" height="13" fill="#88c070" rx="1.5" />
 
-  <!-- Base em pixel art da casinha / escola -->
-  <!-- Linha 0 (Topo / chaminé) -->
+  <!-- Topo / Chaminé -->
   <rect x="4" y="0" width="4" height="1" fill="#14301f" />
 
-  <!-- Linha 1 (Telhado) -->
+  <!-- Telhado -->
   <rect x="3" y="1" width="1" height="1" fill="#14301f" />
   <rect x="4" y="1" width="4" height="1" fill="#f5b82e" />
   <rect x="8" y="1" width="1" height="1" fill="#14301f" />
 
-  <!-- Linha 2 (Telhado) -->
   <rect x="2" y="2" width="1" height="1" fill="#14301f" />
   <rect x="3" y="2" width="6" height="1" fill="#f5b82e" />
   <rect x="9" y="2" width="1" height="1" fill="#14301f" />
 
-  <!-- Linha 3 (Telhado) -->
   <rect x="1" y="3" width="1" height="1" fill="#14301f" />
   <rect x="2" y="3" width="8" height="1" fill="#f5b82e" />
   <rect x="10" y="3" width="1" height="1" fill="#14301f" />
 
-  <!-- Linha 4 (Divisória do telhado) -->
+  <!-- Divisória -->
   <rect x="0" y="4" width="12" height="1" fill="#14301f" />
 
-  <!-- Linha 5 (Parede) -->
+  <!-- Parede -->
   <rect x="1" y="5" width="1" height="1" fill="#14301f" />
   <rect x="2" y="5" width="8" height="1" fill="#dff3c8" />
   <rect x="10" y="5" width="1" height="1" fill="#14301f" />
 
-  <!-- Linha 6 e 7 (Paredes e janelas) -->
+  <!-- Janelas e Paredes -->
   <rect x="1" y="6" width="1" height="2" fill="#14301f" />
   <rect x="2" y="6" width="1" height="2" fill="#dff3c8" />
-  <rect x="3" y="6" width="2" height="2" fill="#14301f" /> <!-- Janela 1 -->
+
+  <!-- Janela Esquerda com animação CSS e SMIL -->
+  <rect class="win-left" x="3" y="6" width="2" height="2" fill="#14301f">
+    <animate attributeName="fill" values="#14301f;#f5b82e;#f5b82e;#14301f" keyTimes="0;0.2;0.7;1" dur="2.4s" begin="0s" repeatCount="indefinite" />
+  </rect>
+
   <rect x="5" y="6" width="2" height="2" fill="#dff3c8" />
-  <rect x="7" y="6" width="2" height="2" fill="#14301f" /> <!-- Janela 2 -->
+
+  <!-- Janela Direita com animação CSS e SMIL -->
+  <rect class="win-right" x="7" y="6" width="2" height="2" fill="#14301f">
+    <animate attributeName="fill" values="#14301f;#14301f;#f5b82e;#f5b82e;#14301f" keyTimes="0;0.33;0.53;0.85;1" dur="2.4s" begin="0s" repeatCount="indefinite" />
+  </rect>
+
   <rect x="9" y="6" width="1" height="2" fill="#dff3c8" />
   <rect x="10" y="6" width="1" height="2" fill="#14301f" />
 
-  <!-- Linha 8 (Parede) -->
+  <!-- Parede inferior e Porta -->
   <rect x="1" y="8" width="1" height="1" fill="#14301f" />
   <rect x="2" y="8" width="8" height="1" fill="#dff3c8" />
   <rect x="10" y="8" width="1" height="1" fill="#14301f" />
 
-  <!-- Linha 9 (Parede e porta) -->
   <rect x="1" y="9" width="1" height="1" fill="#14301f" />
   <rect x="2" y="9" width="3" height="1" fill="#dff3c8" />
-  <rect x="5" y="9" width="2" height="1" fill="#14301f" /> <!-- Porta -->
+  <rect x="5" y="9" width="2" height="1" fill="#14301f" />
   <rect x="7" y="9" width="3" height="1" fill="#dff3c8" />
   <rect x="10" y="9" width="1" height="1" fill="#14301f" />
 
-  <!-- Linha 10 (Base) -->
+  <!-- Base -->
   <rect x="1" y="10" width="10" height="1" fill="#14301f" />
-
-  <!-- Luz animada nas janelas (acende e pulsa em amarelo quente #f5b82e) -->
-  <rect x="3" y="6" width="2" height="2" fill="#f5b82e" opacity="0.1">
-    <animate attributeName="opacity" values="0.1; 1; 1; 0.1" keyTimes="0; 0.2; 0.7; 1" dur="2.4s" begin="0s" repeatCount="indefinite" />
-  </rect>
-
-  <rect x="7" y="6" width="2" height="2" fill="#f5b82e" opacity="0.1">
-    <animate attributeName="opacity" values="0.1; 1; 1; 0.1" keyTimes="0; 0.2; 0.7; 1" dur="2.4s" begin="0.8s" repeatCount="indefinite" />
-  </rect>
 </svg>
