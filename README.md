@@ -1,5 +1,13 @@
 <p align="center">
-  <img src="public/escola-animada.gif" width="96" height="96" alt="Conecta Escola Logo" style="border-radius: 8px;">
+  <a href="https://conecta-escola-sepia.vercel.app/">
+    <img src="public/conecta-escola-logo.png" width="560" alt="Conecta Escola — Educação mais conectada, transparente e inclusiva">
+  </a>
+</p>
+
+<p align="center">
+  <strong>Uma escola mais conectada, transparente e inclusiva.</strong>
+  <br>
+  <a href="https://conecta-escola-sepia.vercel.app/">Acessar versão publicada</a>
 </p>
 
 <h1 align="center">Conecta Escola</h1>
