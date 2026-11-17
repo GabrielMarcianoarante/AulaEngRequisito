@@ -172,39 +172,102 @@ export function Inclusion() {
   );
 }
 
-/* ───────── Demonstração visual (dados fictícios) ───────── */
-type View = { label: string; title: string; stats: [string, string][]; bars: [string, number][]; list: string[] };
-const views: Record<"responsavel" | "professor", View> = {
+/* ───────── Prévia interativa (dados fictícios) ───────── */
+type DemoRole = "responsavel" | "professor";
+type DemoScreen = "resumo" | "notas" | "frequencia" | "atividades" | "comunicados";
+type DemoActivity = { id: string; title: string; detail: string; due: string };
+type DemoNotice = { id: string; title: string; detail: string; date: string };
+type DemoView = {
+  label: string;
+  title: string;
+  stats: [string, string][];
+  bars: [string, number][];
+  grades: [string, string, string][];
+  attendance: [string, string][];
+  attendancePct: number;
+  activities: DemoActivity[];
+  notices: DemoNotice[];
+};
+
+const demoScreens: { id: DemoScreen; label: string }[] = [
+  { id: "resumo", label: "Visão geral" },
+  { id: "notas", label: "Notas" },
+  { id: "frequencia", label: "Frequência" },
+  { id: "atividades", label: "Atividades" },
+  { id: "comunicados", label: "Comunicados" },
+];
+
+const views: Record<DemoRole, DemoView> = {
   responsavel: {
     label: "Responsável",
     title: "Painel do responsável (exemplo)",
     stats: [["Média", "8,1"], ["Frequência", "94%"], ["Atividades pendentes", "2"]],
     bars: [["Matemática", 82], ["Português", 90], ["Ciências", 76]],
-    list: ["Reunião de pais na próxima semana", "Trabalho de ciências até sexta-feira"],
+    grades: [["Matemática", "8,5", "10/11"], ["Português", "7,8", "08/11"], ["Ciências", "9,0", "05/11"]],
+    attendancePct: 94,
+    attendance: [["Segunda-feira", "Presente"], ["Terça-feira", "Presente"], ["Quarta-feira", "Falta justificada"], ["Quinta-feira", "Presente"], ["Sexta-feira", "Presente"]],
+    activities: [
+      { id: "responsavel-matematica", title: "Lista de exercícios", detail: "Matemática · Unidade 4", due: "Entrega sexta-feira" },
+      { id: "responsavel-portugues", title: "Leitura do capítulo 3", detail: "Português · Livro didático", due: "Entrega quinta-feira" },
+      { id: "responsavel-ciencias", title: "Trabalho em grupo", detail: "Ciências · Projeto da turma", due: "Em andamento" },
+    ],
+    notices: [
+      { id: "responsavel-reuniao", title: "Reunião de famílias", detail: "Encontro na escola para conversar sobre a turma.", date: "Próxima semana" },
+      { id: "responsavel-ciencias", title: "Trabalho de ciências", detail: "Lembrete de entrega do trabalho da turma.", date: "Até sexta-feira" },
+    ],
   },
   professor: {
     label: "Professor",
     title: "Painel da turma (exemplo)",
     stats: [["Entregas", "18/25"], ["Frequência da turma", "92%"], ["Planos da semana", "3"]],
     bars: [["Leitura em dia", 72], ["Exercícios entregues", 68], ["Participação", 85]],
-    list: ["Rever o plano de aula de matemática", "Registrar o acompanhamento pedagógico da semana"],
+    grades: [["7º A · Matemática", "8,1", "Média da turma"], ["7º B · Matemática", "7,6", "Média da turma"], ["7º C · Matemática", "8,4", "Média da turma"]],
+    attendancePct: 92,
+    attendance: [["7º A", "24 de 26 presentes"], ["7º B", "22 de 24 presentes"], ["7º C", "25 de 27 presentes"]],
+    activities: [
+      { id: "professor-plano", title: "Rever o plano de aula", detail: "Turma 7º A · Matemática", due: "Esta semana" },
+      { id: "professor-registro", title: "Registrar acompanhamento", detail: "Turma 7º B · Observações pedagógicas", due: "Pendente" },
+      { id: "professor-exercicio", title: "Conferir exercícios entregues", detail: "Turma 7º C · Lista de exercícios", due: "18 de 25 entregues" },
+    ],
+    notices: [
+      { id: "professor-reuniao", title: "Reunião pedagógica", detail: "Alinhamento semanal da equipe escolar.", date: "Quarta-feira · 14h" },
+      { id: "professor-planejamento", title: "Planejamento da semana", detail: "Revise os planos e atividades das turmas.", date: "Atualizado hoje" },
+    ],
   },
 };
 
 export function Demo() {
-  const [tab, setTab] = useState<keyof typeof views>("responsavel");
+  const [tab, setTab] = useState<DemoRole>("responsavel");
+  const [screen, setScreen] = useState<DemoScreen>("resumo");
+  const [completed, setCompleted] = useState<string[]>([]);
+  const [readNotices, setReadNotices] = useState<string[]>([]);
+  const [announcement, setAnnouncement] = useState("");
   const v = views[tab];
+  const screenTitle = demoScreens.find((item) => item.id === screen)?.label ?? "Visão geral";
+
+  const toggleActivity = (activity: DemoActivity) => {
+    const isComplete = completed.includes(activity.id);
+    setCompleted((current) => isComplete ? current.filter((id) => id !== activity.id) : [...current, activity.id]);
+    setAnnouncement(isComplete ? `${activity.title} marcada como pendente.` : `${activity.title} marcada como concluída.`);
+  };
+
+  const toggleNotice = (notice: DemoNotice) => {
+    const isRead = readNotices.includes(notice.id);
+    setReadNotices((current) => isRead ? current.filter((id) => id !== notice.id) : [...current, notice.id]);
+    setAnnouncement(isRead ? `${notice.title} marcada como não lida.` : `${notice.title} marcada como lida.`);
+  };
+
   return (
     <section aria-labelledby="demo-title" className="relative isolate overflow-hidden bg-coal py-24 text-white sm:py-32">
       <div aria-hidden className="absolute inset-0 -z-10 grid-dark [mask-image:radial-gradient(ellipse_at_50%_20%,#000,transparent_75%)]" />
       <Badge3D kind="bubble" blur float className="absolute -right-4 top-10 hidden w-24 sm:block lg:right-[8%] lg:w-28" />
       <div className="wrap">
         <Reveal className="max-w-3xl">
-          <Label>prévia</Label>
+          <Label>prévia interativa</Label>
           <h2 id="demo-title" className={`${h2} mt-5 text-[clamp(2rem,4.2vw,3.4rem)] leading-[0.95]`}>
-            Uma prévia de <span className="lit-text">como poderia funcionar</span><span className="text-orange">.</span>
+            Explore como o sistema <span className="lit-text">poderia funcionar</span><span className="text-orange">.</span>
           </h2>
-          <p className="mt-6 max-w-xl text-base leading-relaxed text-white/80 sm:text-lg">Telas de exemplo com dados inventados, só para você visualizar a ideia. Não existe sistema por trás delas.</p>
+          <p className="mt-6 max-w-xl text-base leading-relaxed text-white/80 sm:text-lg">Troque o perfil e navegue pelas telas para conhecer a proposta. Tudo aqui é fictício: esta prévia não envia nem salva dados.</p>
         </Reveal>
 
         <div className="mt-10 flex w-full max-w-sm border border-white/20 p-1" role="tablist" aria-label="Perfil da demonstração">
@@ -232,34 +295,151 @@ export function Demo() {
 
         <Frame className="mt-8 p-3 sm:p-6">
           <motion.div key={tab} initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: DUR.base, ease: EASE }} id="demo-panel" role="tabpanel" aria-labelledby={`tab-${tab}`} className="overflow-hidden border border-white/12 bg-ink">
-            <div className="flex flex-wrap items-center justify-between gap-2 border-b border-white/10 px-4 py-3 sm:px-6">
-              <span className="font-display text-base font-bold tracking-tight sm:text-lg">{v.title}</span>
-              <span className="font-sans text-[10px] text-orange">dados fictícios</span>
-            </div>
-            <dl className="grid grid-cols-3 divide-x divide-white/10 border-b border-white/10">
-              {v.stats.map(([k, val]) => (
-                <div key={k} className="flex min-w-0 flex-col px-2 py-5 text-center sm:px-4 sm:py-7">
-                  <dt className="order-2 mt-2 text-[11px] leading-tight text-white/80 sm:text-xs">{k}</dt>
-                  <dd className="order-1 font-display text-[clamp(1.6rem,6.5vw,3.6rem)] font-semibold leading-none tracking-[-0.04em]"><CountUp key={`${tab}-${k}`} text={val} /></dd>
-                </div>
-              ))}
-            </dl>
-            <div className="grid gap-8 p-5 sm:p-8 md:grid-cols-2 md:gap-12">
-              <ul key={tab} className="space-y-5">
-                {v.bars.map(([n, pct]) => (
-                  <li key={n}>
-                    <div className="flex justify-between gap-3 text-sm"><span>{n}</span><span className="font-sans font-semibold">{pct}%</span></div>
-                    <div className="mt-2 h-2.5 bg-white/10" role="img" aria-label={`${n}: ${pct}% (valor fictício)`}>
-                      <motion.div className="h-full bg-orange" initial={{ width: 0 }} animate={{ width: `${pct}%` }} transition={{ duration: 0.7, ease: "easeOut" }} />
-                    </div>
-                  </li>
-                ))}
-              </ul>
+            <header className="flex flex-wrap items-center justify-between gap-3 border-b border-white/10 px-4 py-4 sm:px-6">
               <div>
-                <p className="font-sans text-xs text-white/80">Comunicados</p>
-                <ul className="mt-3 divide-y divide-white/10 border-t border-white/10 text-sm text-white/80">
-                  {v.list.map((l) => <li key={l} className="py-3.5">{l}</li>)}
+                <p className="font-sans text-xs text-white/75">Conecta Escola · ambiente de demonstração</p>
+                <h3 id="demo-panel-title" className="mt-1 font-display text-lg font-bold tracking-tight sm:text-xl">{v.title}</h3>
+              </div>
+              <span className="border border-orange/60 px-2.5 py-1 font-sans text-[10px] font-bold uppercase tracking-wider text-orange">Dados fictícios</span>
+            </header>
+
+            <div className="grid md:grid-cols-[12rem_minmax(0,1fr)]">
+              <nav aria-label="Telas da prévia" className="border-b border-white/10 p-3 md:border-b-0 md:border-r">
+                <ul className="grid grid-cols-2 gap-2 sm:grid-cols-5 md:grid-cols-1">
+                  {demoScreens.map((item) => (
+                    <li key={item.id}>
+                      <button type="button" aria-current={screen === item.id ? "page" : undefined} onClick={() => setScreen(item.id)}
+                        className={`flex min-h-11 w-full items-center gap-2 border px-3 py-2 text-left text-sm font-semibold transition-colors ${screen === item.id ? "border-orange bg-orange text-ink" : "border-white/15 text-white/80 hover:border-white/40 hover:bg-white/5 hover:text-white"}`}>
+                        <span aria-hidden="true" className={`size-2 shrink-0 ${screen === item.id ? "bg-ink" : "border border-white/60"}`} />
+                        {item.label}
+                      </button>
+                    </li>
+                  ))}
                 </ul>
+              </nav>
+
+              <div className="min-w-0 p-4 sm:p-6">
+                <div className="mb-6 flex flex-wrap items-end justify-between gap-3">
+                  <div>
+                    <p className="font-sans text-xs font-bold uppercase tracking-wider text-orange">{v.label} · prévia</p>
+                    <h4 id="demo-screen-title" className="mt-1 font-display text-xl font-bold tracking-tight">{screenTitle}</h4>
+                  </div>
+                  <p className="text-xs text-white/75">Exemplo ilustrativo</p>
+                </div>
+
+                <motion.div key={screen} initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: DUR.base, ease: EASE }} role="region" aria-labelledby="demo-screen-title">
+                  {screen === "resumo" && (
+                    <>
+                      <dl className="grid grid-cols-3 divide-x divide-white/10 border-y border-white/10">
+                        {v.stats.map(([label, value]) => (
+                          <div key={label} className="flex min-w-0 flex-col px-2 py-4 text-center sm:px-4 sm:py-5">
+                            <dt className="order-2 mt-2 text-[11px] leading-tight text-white/80 sm:text-xs">{label}</dt>
+                            <dd className="order-1 font-display text-[clamp(1.5rem,5vw,2.5rem)] font-semibold leading-none tracking-tight"><CountUp key={`${tab}-${label}`} text={value} /></dd>
+                          </div>
+                        ))}
+                      </dl>
+                      <div className="mt-7 grid gap-8 xl:grid-cols-2">
+                        <section aria-labelledby="demo-progress-title">
+                          <h5 id="demo-progress-title" className="font-display text-base font-bold">Acompanhamento (exemplo)</h5>
+                          <ul className="mt-4 space-y-5">
+                            {v.bars.map(([label, pct]) => (
+                              <li key={label}>
+                                <div className="flex justify-between gap-3 text-sm"><span>{label}</span><span className="font-sans font-semibold">{pct}%</span></div>
+                                <div className="mt-2 h-2.5 bg-white/10" role="img" aria-label={`${label}: ${pct}% (valor fictício)`}>
+                                  <motion.div className="h-full bg-orange" initial={{ width: 0 }} animate={{ width: `${pct}%` }} transition={{ duration: 0.7, ease: "easeOut" }} />
+                                </div>
+                              </li>
+                            ))}
+                          </ul>
+                        </section>
+                        <section aria-labelledby="demo-recent-notices">
+                          <h5 id="demo-recent-notices" className="font-display text-base font-bold">Comunicados recentes</h5>
+                          <ul className="mt-4 divide-y divide-white/10 border-t border-white/10">
+                            {v.notices.map((notice) => (
+                              <li key={notice.id} className="py-3">
+                                <p className="text-sm font-semibold">{notice.title}</p>
+                                <p className="mt-1 text-xs leading-relaxed text-white/75">{notice.date} · {notice.detail}</p>
+                              </li>
+                            ))}
+                          </ul>
+                        </section>
+                      </div>
+                    </>
+                  )}
+
+                  {screen === "notas" && (
+                    <div className="overflow-x-auto">
+                      <table className="w-full min-w-[28rem] border-collapse text-left text-sm">
+                        <caption className="sr-only">Notas fictícias do perfil {v.label}</caption>
+                        <thead><tr className="border-y border-white/15 text-xs text-white/75"><th scope="col" className="px-3 py-3">Disciplina / turma</th><th scope="col" className="px-3 py-3">Nota</th><th scope="col" className="px-3 py-3">Referência</th></tr></thead>
+                        <tbody>{v.grades.map(([subject, grade, date]) => <tr key={subject} className="border-b border-white/10"><th scope="row" className="px-3 py-4 font-semibold">{subject}</th><td className="px-3 py-4 font-display text-lg font-bold text-orange">{grade}</td><td className="px-3 py-4 text-white/75">{date}</td></tr>)}</tbody>
+                      </table>
+                    </div>
+                  )}
+
+                  {screen === "frequencia" && (
+                    <div className="space-y-6">
+                      <div className="border border-white/15 p-4">
+                        <div className="flex items-center justify-between gap-3">
+                          <p className="font-semibold">Frequência no período</p>
+                          <p className="font-display text-2xl font-bold text-orange">{v.attendancePct}%</p>
+                        </div>
+                        <div className="mt-3 h-3 bg-white/10" role="img" aria-label={`Frequência fictícia: ${v.attendancePct}%`}>
+                          <div className="h-full bg-leaf" style={{ width: `${v.attendancePct}%` }} />
+                        </div>
+                      </div>
+                      <div>
+                        <h5 className="font-display text-base font-bold">{tab === "responsavel" ? "Registro da semana (exemplo)" : "Resumo por turma (exemplo)"}</h5>
+                        <ul className="mt-3 divide-y divide-white/10 border-t border-white/10">
+                          {v.attendance.map(([day, status]) => <li key={day} className="flex items-center justify-between gap-3 py-3 text-sm"><span>{day}</span><span className="text-white/75">{status}</span></li>)}
+                        </ul>
+                      </div>
+                    </div>
+                  )}
+
+                  {screen === "atividades" && (
+                    <ul className="space-y-3">
+                      {v.activities.map((activity) => {
+                        const isComplete = completed.includes(activity.id);
+                        return (
+                          <li key={activity.id} className="flex flex-col gap-4 border border-white/15 p-4 sm:flex-row sm:items-center sm:justify-between">
+                            <div>
+                              <h5 className={`font-semibold ${isComplete ? "text-white/70 line-through" : ""}`}>{activity.title}</h5>
+                              <p className="mt-1 text-sm text-white/75">{activity.detail}</p>
+                              <p className="mt-1 text-xs text-orange">{isComplete ? "Concluída nesta prévia" : activity.due}</p>
+                            </div>
+                            <button type="button" aria-pressed={isComplete} onClick={() => toggleActivity(activity)} className="min-h-11 shrink-0 border-2 border-sand px-4 py-2 text-sm font-semibold text-white hover:bg-sand hover:text-ink">
+                              {isComplete ? "Desmarcar conclusão" : "Marcar como concluída"}
+                            </button>
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  )}
+
+                  {screen === "comunicados" && (
+                    <ul className="space-y-3">
+                      {v.notices.map((notice) => {
+                        const isRead = readNotices.includes(notice.id);
+                        return (
+                          <li key={notice.id} className={`border p-4 ${isRead ? "border-white/10 bg-white/[0.02]" : "border-orange/60 bg-white/[0.04]"}`}>
+                            <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+                              <div>
+                                <p className="text-xs font-bold uppercase tracking-wider text-orange">{notice.date}</p>
+                                <h5 className="mt-2 font-display text-base font-bold">{notice.title}</h5>
+                                <p className="mt-1 text-sm leading-relaxed text-white/80">{notice.detail}</p>
+                              </div>
+                              <button type="button" aria-pressed={isRead} aria-label={`${isRead ? "Marcar como não lido" : "Marcar como lido"}: ${notice.title}`} onClick={() => toggleNotice(notice)} className="min-h-11 shrink-0 border border-white/30 px-4 py-2 text-sm font-semibold hover:bg-white/10">
+                                {isRead ? "Lido" : "Marcar como lido"}
+                              </button>
+                            </div>
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  )}
+                </motion.div>
+                <p role="status" aria-live="polite" className="sr-only">{announcement}</p>
               </div>
             </div>
           </motion.div>
