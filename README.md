@@ -36,7 +36,7 @@
 |---|---|---|
 | Diagrama de Casos de Uso — UML | Representação dos atores e das funcionalidades do sistema. | [Visualizar UML](./Unidade_5/UML) |
 | Lean Canvas | Modelo visual da proposta de valor e estrutura do projeto. | [Acessar Lean Canvas](./Unidade_5/Lean_Canvas/Canvas.png) |
-| Documentação do Projeto | Documentação acadêmica e especificação do projeto em PDF. | [Visualizar PDF](./Unidade_5/Documentação.pdf) |
+| Documentação do Projeto | Documentação acadêmica e especificação do projeto em PDF. | [Visualizar PDF](./Unidade_5/Projeto_Conecta_Escola.pdf) |
 ---
 
 
