@@ -175,7 +175,15 @@ export function Inclusion() {
 /* ───────── Prévia interativa (dados fictícios) ───────── */
 type DemoRole = "responsavel" | "professor";
 type DemoScreen = "resumo" | "notas" | "frequencia" | "atividades" | "comunicados";
-type DemoActivity = { id: string; title: string; detail: string; due: string };
+type DemoActivity = {
+  id: string;
+  title: string;
+  detail: string;
+  due: string;
+  status: "Entregue" | "Pendente" | "Em andamento" | "Atividade aberta";
+  delivered?: number;
+  total?: number;
+};
 type DemoNotice = { id: string; title: string; detail: string; date: string };
 type DemoView = {
   label: string;
@@ -207,9 +215,9 @@ const views: Record<DemoRole, DemoView> = {
     attendancePct: 94,
     attendance: [["Segunda-feira", "Presente"], ["Terça-feira", "Presente"], ["Quarta-feira", "Falta justificada"], ["Quinta-feira", "Presente"], ["Sexta-feira", "Presente"]],
     activities: [
-      { id: "responsavel-matematica", title: "Lista de exercícios", detail: "Matemática · Unidade 4", due: "Entrega sexta-feira" },
-      { id: "responsavel-portugues", title: "Leitura do capítulo 3", detail: "Português · Livro didático", due: "Entrega quinta-feira" },
-      { id: "responsavel-ciencias", title: "Trabalho em grupo", detail: "Ciências · Projeto da turma", due: "Em andamento" },
+      { id: "responsavel-matematica", title: "Lista de exercícios", detail: "Matemática · Unidade 4", due: "Entregue em 14/11", status: "Entregue" },
+      { id: "responsavel-portugues", title: "Leitura do capítulo 3", detail: "Português · Livro didático", due: "Prazo: 16/11", status: "Pendente" },
+      { id: "responsavel-ciencias", title: "Trabalho em grupo", detail: "Ciências · Projeto da turma", due: "Prazo: 20/11", status: "Em andamento" },
     ],
     notices: [
       { id: "responsavel-reuniao", title: "Reunião de famílias", detail: "Encontro na escola para conversar sobre a turma.", date: "Próxima semana" },
@@ -225,9 +233,9 @@ const views: Record<DemoRole, DemoView> = {
     attendancePct: 92,
     attendance: [["7º A", "24 de 26 presentes"], ["7º B", "22 de 24 presentes"], ["7º C", "25 de 27 presentes"]],
     activities: [
-      { id: "professor-plano", title: "Rever o plano de aula", detail: "Turma 7º A · Matemática", due: "Esta semana" },
-      { id: "professor-registro", title: "Registrar acompanhamento", detail: "Turma 7º B · Observações pedagógicas", due: "Pendente" },
-      { id: "professor-exercicio", title: "Conferir exercícios entregues", detail: "Turma 7º C · Lista de exercícios", due: "18 de 25 entregues" },
+      { id: "professor-plano", title: "Lista de exercícios", detail: "Turma 7º A · Matemática", due: "Prazo: 20/11", status: "Atividade aberta", delivered: 18, total: 25 },
+      { id: "professor-registro", title: "Leitura do capítulo 3", detail: "Turma 7º B · Português", due: "Prazo: 21/11", status: "Atividade aberta", delivered: 20, total: 24 },
+      { id: "professor-exercicio", title: "Trabalho em grupo", detail: "Turma 7º C · Ciências", due: "Prazo: 22/11", status: "Atividade aberta", delivered: 17, total: 27 },
     ],
     notices: [
       { id: "professor-reuniao", title: "Reunião pedagógica", detail: "Alinhamento semanal da equipe escolar.", date: "Quarta-feira · 14h" },
@@ -239,16 +247,16 @@ const views: Record<DemoRole, DemoView> = {
 export function Demo() {
   const [tab, setTab] = useState<DemoRole>("responsavel");
   const [screen, setScreen] = useState<DemoScreen>("resumo");
-  const [completed, setCompleted] = useState<string[]>([]);
+  const [expandedActivities, setExpandedActivities] = useState<string[]>([]);
   const [readNotices, setReadNotices] = useState<string[]>([]);
   const [announcement, setAnnouncement] = useState("");
   const v = views[tab];
   const screenTitle = demoScreens.find((item) => item.id === screen)?.label ?? "Visão geral";
 
-  const toggleActivity = (activity: DemoActivity) => {
-    const isComplete = completed.includes(activity.id);
-    setCompleted((current) => isComplete ? current.filter((id) => id !== activity.id) : [...current, activity.id]);
-    setAnnouncement(isComplete ? `${activity.title} marcada como pendente.` : `${activity.title} marcada como concluída.`);
+  const toggleActivitySummary = (activity: DemoActivity) => {
+    const isExpanded = expandedActivities.includes(activity.id);
+    setExpandedActivities((current) => isExpanded ? current.filter((id) => id !== activity.id) : [...current, activity.id]);
+    setAnnouncement(isExpanded ? `Resumo de entregas de ${activity.title} recolhido.` : `Resumo de entregas de ${activity.title} aberto.`);
   };
 
   const toggleNotice = (notice: DemoNotice) => {
@@ -398,23 +406,48 @@ export function Demo() {
                   )}
 
                   {screen === "atividades" && (
-                    <ul className="space-y-3">
-                      {v.activities.map((activity) => {
-                        const isComplete = completed.includes(activity.id);
-                        return (
-                          <li key={activity.id} className="flex flex-col gap-4 border border-white/15 p-4 sm:flex-row sm:items-center sm:justify-between">
-                            <div>
-                              <h5 className={`font-semibold ${isComplete ? "text-white/70 line-through" : ""}`}>{activity.title}</h5>
-                              <p className="mt-1 text-sm text-white/75">{activity.detail}</p>
-                              <p className="mt-1 text-xs text-orange">{isComplete ? "Concluída nesta prévia" : activity.due}</p>
-                            </div>
-                            <button type="button" aria-pressed={isComplete} onClick={() => toggleActivity(activity)} className="min-h-11 shrink-0 border-2 border-sand px-4 py-2 text-sm font-semibold text-white hover:bg-sand hover:text-ink">
-                              {isComplete ? "Desmarcar conclusão" : "Marcar como concluída"}
-                            </button>
-                          </li>
-                        );
-                      })}
-                    </ul>
+                    <div>
+                      <p className="mb-4 text-sm leading-relaxed text-white/75">
+                        {tab === "responsavel"
+                          ? "Acompanhe o que foi entregue, o que está em andamento e os próximos prazos."
+                          : "Consulte as entregas por turma. Os totais são fictícios e não mostram dados de estudantes."}
+                      </p>
+                      <ul className="space-y-3">
+                        {v.activities.map((activity) => {
+                          const isExpanded = expandedActivities.includes(activity.id);
+                          return (
+                            <li key={activity.id} className="border border-white/15 p-4">
+                              <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+                                <div>
+                                  <h5 className="font-semibold">{activity.title}</h5>
+                                  <p className="mt-1 text-sm text-white/75">{activity.detail}</p>
+                                  <p className="mt-2 text-xs text-white/75">{activity.due}</p>
+                                </div>
+                                {tab === "responsavel" ? (
+                                  <span className={`inline-flex min-h-8 items-center border px-3 py-1 text-xs font-bold ${activity.status === "Entregue" ? "border-leaf/70 bg-leaf text-ink" : activity.status === "Pendente" ? "border-orange/70 text-orange" : "border-white/30 text-white/80"}`}>
+                                    {activity.status}
+                                  </span>
+                                ) : (
+                                  <div className="flex shrink-0 flex-col items-start gap-2 sm:items-end">
+                                    <span className="text-sm font-bold text-orange">{activity.delivered} de {activity.total} entregas</span>
+                                    <button type="button" aria-expanded={isExpanded} aria-controls={`entregas-${activity.id}`} onClick={() => toggleActivitySummary(activity)} className="min-h-11 border border-white/30 px-4 py-2 text-sm font-semibold hover:bg-white/10">
+                                      {isExpanded ? "Ocultar resumo" : "Ver resumo de entregas"}
+                                    </button>
+                                  </div>
+                                )}
+                              </div>
+                              {tab === "professor" && (
+                                <div id={`entregas-${activity.id}`} hidden={!isExpanded} className="mt-4 border-t border-white/15 pt-3 text-sm text-white/80">
+                                  <p>{activity.delivered} estudantes entregaram esta atividade.</p>
+                                  <p className="mt-1">{(activity.total ?? 0) - (activity.delivered ?? 0)} entregas ainda pendentes.</p>
+                                  <p className="mt-2 text-xs text-white/60">Resumo fictício, sem nomes ou dados pessoais.</p>
+                                </div>
+                              )}
+                            </li>
+                          );
+                        })}
+                      </ul>
+                    </div>
                   )}
 
                   {screen === "comunicados" && (
