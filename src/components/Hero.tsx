@@ -68,7 +68,7 @@ export function Hero() {
   });
 
   return (
-    <section id="topo" className="grain relative isolate overflow-hidden bg-ink pb-20 pt-24 text-white sm:pb-28 sm:pt-32">
+    <section id="topo" aria-labelledby="hero-title" className="grain relative isolate overflow-hidden bg-ink pb-20 pt-24 text-white sm:pb-28 sm:pt-32">
       <div aria-hidden className="absolute inset-0 -z-10 grid-dark [mask-image:radial-gradient(ellipse_at_50%_28%,#000_15%,transparent_72%)]" />
 
       <div className="wrap">
@@ -77,7 +77,7 @@ export function Hero() {
         </motion.div>
 
         <Frame className="mt-8 px-5 py-10 sm:mt-10 sm:px-10 sm:py-16 lg:px-16 lg:py-20">
-          <h1 className="font-display font-semibold">
+          <h1 id="hero-title" className="font-display font-semibold">
             <span className="block overflow-hidden pb-[0.1em]">
               <motion.span className="ghost-text block text-[clamp(1.3rem,3.4vw,2.6rem)] leading-[1.02] tracking-[-0.03em] text-balance" {...line(0)}>Uma escola mais conectada,</motion.span>
             </span>
@@ -93,7 +93,7 @@ export function Hero() {
 
         <div className="mt-14 grid items-center gap-16 lg:mt-20 lg:grid-cols-12 lg:gap-8">
           <div className="lg:col-span-5">
-            <motion.p {...fade(0.35)} className="max-w-md text-base leading-relaxed text-white/65 sm:text-lg">
+            <motion.p {...fade(0.35)} className="max-w-md text-base leading-relaxed text-white/80 sm:text-lg">
               Estamos propondo uma plataforma que reúna notas, frequência, atividades e avisos, e aproxime famílias, professores e coordenação. Antes de construí-la, queremos ouvir quem vive a escola.
             </motion.p>
             <motion.div {...fade(0.45)} className="mt-8 flex flex-col gap-3 sm:flex-row lg:flex-col xl:flex-row">
@@ -113,11 +113,11 @@ export function Hero() {
               </div>
               <div className="p-5 sm:p-7">
                 <p className="font-display text-2xl font-bold tracking-tight">Semana do estudante</p>
-                <p className="mt-1 text-xs text-white/50">Exemplo ilustrativo da futura plataforma</p>
+                <p className="mt-1 text-xs text-white/75">Exemplo ilustrativo da futura plataforma</p>
                 <motion.ul variants={{ show: { transition: { staggerChildren: 0.12, delayChildren: 0.9 } } }} initial="hidden" animate="show" className="mt-5 divide-y divide-white/10 text-sm">
                   {[["Matemática", "Lista de exercícios", "Entrega sexta"], ["Português", "Leitura do capítulo 3", "Entrega quinta"], ["Ciências", "Trabalho em grupo", "Em andamento"]].map(([a, b, c]) => (
                     <motion.li key={a} variants={{ hidden: { opacity: 0, x: reduce ? 0 : -12 }, show: { opacity: 1, x: 0, transition: { duration: DUR.base, ease: EASE } } }} className="flex flex-wrap items-center justify-between gap-x-3 gap-y-2 py-3.5">
-                      <span><span className="font-semibold">{a}</span> <span className="text-white/55">{b}</span></span>
+                      <span><span className="font-semibold">{a}</span> <span className="text-white/75">{b}</span></span>
                       <span className="shrink-0 bg-orange px-2 py-0.5 font-sans text-[11px] font-semibold text-black">{c}</span>
                     </motion.li>
                   ))}
@@ -131,7 +131,7 @@ export function Hero() {
             <div className="mt-8 grid grid-cols-2 gap-3 xl:hidden">
               {notes.map((n) => <NoteCard key={n.k} n={n} />)}
             </div>
-            <p className="mt-8 text-center font-sans text-[11px] text-white/40 xl:mt-16">Ilustração conceitual com dados fictícios. Nenhum dado real é exibido.</p>
+            <p className="mt-8 text-center font-sans text-[11px] text-white/75 xl:mt-16">Ilustração conceitual com dados fictícios. Nenhum dado real é exibido.</p>
           </div>
         </div>
       </div>

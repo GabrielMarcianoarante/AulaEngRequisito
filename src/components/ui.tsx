@@ -21,9 +21,9 @@ const styles: Record<Variant, string> = {
 };
 const base = "group inline-flex min-h-12 items-center justify-center gap-2.5 px-6 py-3 text-sm font-semibold transition-all active:translate-x-1 active:translate-y-1 active:shadow-none";
 
-export function ResearchButton({ children = "Contribuir com a pesquisa", variant = "orange", className = "" }: { children?: React.ReactNode; variant?: Variant; className?: string }) {
+export function ResearchButton({ children = "Contribuir com a pesquisa", variant = "orange", className = "", onClick }: { children?: React.ReactNode; variant?: Variant; className?: string; onClick?: () => void }) {
   return (
-    <motion.a {...researchLinkProps()} whileTap={{ scale: 0.97 }} transition={{ duration: DUR.fast }} className={`${base} ${styles[variant]} ${className}`}>
+    <motion.a {...researchLinkProps()} onClick={onClick} whileTap={{ scale: 0.97 }} transition={{ duration: DUR.fast }} className={`${base} ${styles[variant]} ${className}`}>
       {children}
     </motion.a>
   );
@@ -121,12 +121,15 @@ export function Win({ title, children, className = "" }: { title: string; childr
 export function Words({ text }: { text: string }) {
   const reduce = useReducedMotion();
   return (
-    <span aria-label={text}>
-      {text.split(" ").map((w, i) => (
-        <span key={i} aria-hidden className="inline-block overflow-hidden pb-[0.12em] align-bottom">
-          <motion.span className="inline-block" initial={{ y: reduce ? 0 : "105%", opacity: 0 }} whileInView={{ y: 0, opacity: 1 }} viewport={{ once: true, margin: "-60px" }} transition={{ duration: 0.6, delay: i * 0.06, ease: EASE }}>{w}&nbsp;</motion.span>
-        </span>
-      ))}
-    </span>
+    <>
+      <span className="sr-only">{text}</span>
+      <span aria-hidden="true">
+        {text.split(" ").map((w, i) => (
+          <span key={i} className="inline-block overflow-hidden pb-[0.12em] align-bottom">
+            <motion.span className="inline-block" initial={{ y: reduce ? 0 : "105%", opacity: 0 }} whileInView={{ y: 0, opacity: 1 }} viewport={{ once: true, margin: "-60px" }} transition={{ duration: 0.6, delay: i * 0.06, ease: EASE }}>{w}&nbsp;</motion.span>
+          </span>
+        ))}
+      </span>
+    </>
   );
 }

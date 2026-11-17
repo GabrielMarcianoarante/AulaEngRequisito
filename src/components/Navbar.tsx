@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion, useMotionValueEvent, useScroll } from "motion/react";
 import { Menu, X } from "lucide-react";
 import { PixelLogo } from "./Art";
@@ -18,6 +18,8 @@ export function Navbar() {
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState("");
   const [scrolled, setScrolled] = useState(false);
+  const menuButton = useRef<HTMLButtonElement>(null);
+  const mobileMenu = useRef<HTMLDivElement>(null);
   const { scrollY } = useScroll();
   useMotionValueEvent(scrollY, "change", (v) => setScrolled(v > 24));
 
@@ -36,9 +38,33 @@ export function Navbar() {
     if (!open) return;
     const prev = document.body.style.overflow;
     document.body.style.overflow = "hidden";
-    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
+    const firstFrame = window.requestAnimationFrame(() => {
+      mobileMenu.current?.querySelector<HTMLElement>("a")?.focus();
+    });
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setOpen(false);
+        menuButton.current?.focus();
+        return;
+      }
+      if (e.key !== "Tab" || !mobileMenu.current) return;
+      const items = mobileMenu.current.querySelectorAll<HTMLElement>("a[href]");
+      const first = items[0];
+      const last = items[items.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last?.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first?.focus();
+      }
+    };
     window.addEventListener("keydown", onKey);
-    return () => { document.body.style.overflow = prev; window.removeEventListener("keydown", onKey); };
+    return () => {
+      window.cancelAnimationFrame(firstFrame);
+      document.body.style.overflow = prev;
+      window.removeEventListener("keydown", onKey);
+    };
   }, [open]);
 
   return (
@@ -54,7 +80,7 @@ export function Navbar() {
         <ul className="hidden items-center gap-7 lg:flex">
           {links.map((l) => (
             <li key={l.href}>
-              <a href={l.href} aria-current={active === l.href ? "true" : undefined} className={`relative py-2 font-sans text-xs transition-colors ${active === l.href ? "text-white" : "text-white/55 hover:text-white"}`}>
+              <a href={l.href} aria-current={active === l.href ? "location" : undefined} className={`relative py-2 font-sans text-xs transition-colors ${active === l.href ? "text-white" : "text-white/75 hover:text-white"}`}>
                 {l.label}
                 {active === l.href && <motion.span layoutId="nav-line" className="absolute inset-x-0 -bottom-0.5 h-0.5 bg-orange" transition={{ type: "spring", stiffness: 380, damping: 32 }} />}
               </a>
@@ -64,7 +90,7 @@ export function Navbar() {
 
         <div className="hidden lg:block"><ResearchButton className="!min-h-10 !px-5 !py-2">Participar da pesquisa</ResearchButton></div>
 
-        <button className="grid size-11 place-items-center border border-white/25 lg:hidden" aria-expanded={open} aria-controls="menu-mobile" aria-label={open ? "Fechar menu" : "Abrir menu"} onClick={() => setOpen((v) => !v)}>
+        <button ref={menuButton} className="grid size-11 place-items-center border border-white/25 lg:hidden" aria-expanded={open} aria-controls="menu-mobile" aria-label={open ? "Fechar menu" : "Abrir menu"} onClick={() => setOpen((v) => !v)}>
           {open ? <X className="size-5" /> : <Menu className="size-5" />}
         </button>
       </nav>
@@ -72,18 +98,20 @@ export function Navbar() {
     </header>
       <AnimatePresence>
         {open && (
-          <motion.div id="menu-mobile" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.2 }} className="fixed inset-x-0 bottom-0 top-16 z-40 overflow-y-auto bg-ink lg:hidden">
+          <motion.div ref={mobileMenu} id="menu-mobile" role="dialog" aria-modal="true" aria-label="Menu principal" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.2 }} className="fixed inset-x-0 bottom-0 top-16 z-40 overflow-y-auto bg-ink lg:hidden">
             <div className="wrap flex min-h-full flex-col py-8">
+              <nav aria-label="Navegação móvel">
               <ul className="border-t border-white/15">
                 {links.map((l, i) => (
                   <li key={l.href}>
-                    <a href={l.href} onClick={() => setOpen(false)} className="flex items-baseline gap-4 border-b border-white/15 py-5 font-display text-3xl font-bold tracking-tight sm:text-4xl">
+                    <a href={l.href} aria-current={active === l.href ? "location" : undefined} onClick={() => setOpen(false)} className="flex items-baseline gap-4 border-b border-white/15 py-5 font-display text-3xl font-bold tracking-tight sm:text-4xl">
                       {l.label}
                     </a>
                   </li>
                 ))}
               </ul>
-              <div className="mt-8" onClick={() => setOpen(false)}><ResearchButton className="w-full">Participar da pesquisa</ResearchButton></div>
+              </nav>
+              <div className="mt-8"><ResearchButton className="w-full" onClick={() => setOpen(false)}>Participar da pesquisa</ResearchButton></div>
             </div>
           </motion.div>
         )}

@@ -9,3 +9,4 @@ next-env.d.ts
 forms.local.json
 cartazes.html
 publicar.sh
+next.config.ts

@@ -35,13 +35,13 @@ function Gate({ p, i, token, done }: { p: P; i: number; token: string; done: boo
           <div className="w-16 shrink-0 border-2 border-ink bg-leaf p-1"><PixelFace kind={p.kind} i={i} className="w-full" /></div>
           <div><p className="text-sm font-semibold text-ink/70">Participar da pesquisa como</p><h3 className="font-display text-2xl font-bold">{p.t}</h3></div>
         </div>
-        <form onSubmit={entrar} className="mt-6">
+        <form onSubmit={entrar} aria-busy={busy} className="mt-6">
           <label htmlFor="codigo" className="text-sm font-bold">Código do cartaz</label>
           <input id="codigo" value={codigo} onChange={(e) => setCodigo(e.target.value)} autoComplete="off" autoCapitalize="characters" required placeholder="Ex.: ALU-7392" className="mt-2 block w-full border-2 border-ink bg-sand px-4 py-3 font-pixel text-xl uppercase tracking-wider outline-offset-2" />
           <p role="status" aria-live="polite" className="mt-2 min-h-5 text-sm font-semibold">{msg}</p>
           <div className="mt-3 flex flex-wrap items-center gap-4">
-            <button type="submit" disabled={busy} className={btn}>Ir para o formulário</button>
-            <button type="button" onClick={gerar} disabled={busy} className="text-sm font-semibold underline underline-offset-4">Esqueci o código, gerar um</button>
+            <button type="submit" disabled={busy} className={btn}>{busy ? "Verificando..." : "Ir para o formulário"}</button>
+            <button type="button" onClick={gerar} disabled={busy} className="min-h-11 px-2 text-sm font-semibold underline underline-offset-4">Esqueci o código, gerar um</button>
           </div>
         </form>
       </div>

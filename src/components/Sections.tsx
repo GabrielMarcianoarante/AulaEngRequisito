@@ -41,12 +41,12 @@ export function Problem() {
   const on = useInView(ref, { once: true, amount: 0.1 });
   const lit = (d: number) => ({ initial: { opacity: 0 }, animate: on ? { opacity: 1 } : {}, transition: { duration: reduce ? 0 : 0.9, delay: reduce ? 0 : d } });
   return (
-    <section id="visao-geral" className="relative isolate overflow-hidden bg-ink pt-24 text-white sm:pt-32">
+    <section id="visao-geral" aria-labelledby="problem-title" className="relative isolate overflow-hidden bg-ink pt-24 text-white sm:pt-32">
       <div aria-hidden className="grid-dark absolute inset-0 -z-10 [mask-image:linear-gradient(to_bottom,#000,transparent_85%)]" />
       <div className="wrap">
         <Reveal className="max-w-5xl">
           <Label>O problema</Label>
-          <h2 className={`${h2} mt-5 text-[clamp(2rem,5vw,4rem)] leading-[0.95]`}><Words text="Acompanhar a vida escolar nem sempre é simples" /></h2>
+          <h2 id="problem-title" className={`${h2} mt-5 text-[clamp(2rem,5vw,4rem)] leading-[0.95]`}><Words text="Acompanhar a vida escolar nem sempre é simples" /></h2>
           <p className="mt-6 max-w-xl text-base leading-relaxed text-white/75 sm:text-lg">Tratamos isso como uma pergunta a ser investigada, não como uma conclusão. Não sabemos como cada escola pública funciona, e a pesquisa existe para descobrir.</p>
         </Reveal>
 
@@ -82,11 +82,11 @@ const rise = { hidden: { opacity: 0, y: 24 }, show: { opacity: 1, y: 0, transiti
 
 export function Proposal() {
   return (
-    <section id="funcionalidades" className="on-orange grid-orange relative isolate overflow-hidden bg-sand py-24 text-black sm:py-32">
+    <section id="funcionalidades" aria-labelledby="proposal-title" className="on-orange grid-orange relative isolate overflow-hidden bg-sand py-24 text-black sm:py-32">
       <div className="wrap grid gap-14 lg:grid-cols-[5fr_7fr] lg:gap-12">
         <Reveal className="lg:sticky lg:top-28 lg:self-start">
           <Label tone="orange">a proposta</Label>
-          <h2 className={`${h2} mt-5 text-[clamp(1.9rem,3.6vw,3rem)] leading-[0.95]`}>
+          <h2 id="proposal-title" className={`${h2} mt-5 text-[clamp(1.9rem,3.6vw,3rem)] leading-[0.95]`}>
             <span>Reunir informações</span> <span className="text-black">e facilitar a conversa entre todos</span>
           </h2>
           <p className="mt-6 max-w-md text-base font-medium leading-relaxed text-black/80">A ideia é concentrar o que hoje fica espalhado e dar a cada pessoa da comunidade escolar o que ela precisa ver. Tudo abaixo é proposta: nenhuma dessas funcionalidades existe ainda.</p>
@@ -99,7 +99,7 @@ export function Proposal() {
               <div className="border-2 border-sand bg-leaf p-1.5 shadow-[4px_4px_0_#dff3c8] transition-transform group-hover:-translate-y-1"><PixelFace kind={p.kind} i={i} className="w-full" /></div>
               <div className="min-w-0">
                 <h3 className="mt-1 font-display text-xl font-bold leading-tight tracking-tight sm:text-2xl">{p.t}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-white/65 sm:text-base">{p.d}</p>
+                <p className="mt-2 text-sm leading-relaxed text-white/80 sm:text-base">{p.d}</p>
                 <span className="mt-4 inline-block border border-white/25 px-2.5 py-1 font-sans text-[10px] text-white/70">Funcionalidade proposta</span>
               </div>
             </motion.li>
@@ -141,21 +141,21 @@ function Venn() {
 
 export function Inclusion() {
   return (
-    <section id="inclusao" className="grain relative isolate overflow-hidden bg-ink py-24 text-white sm:py-32">
+    <section id="inclusao" aria-labelledby="inclusion-title" className="grain relative isolate overflow-hidden bg-ink py-24 text-white sm:py-32">
       <div aria-hidden className="absolute inset-0 -z-10 grid-dark [mask-image:radial-gradient(ellipse_at_20%_30%,#000,transparent_70%)]" />
       <div className="wrap grid items-center gap-16 lg:grid-cols-2 lg:gap-12">
         <Reveal>
           <Label>inclusão e acessibilidade</Label>
-          <h2 className={`${h2} mt-5 text-[clamp(2rem,4vw,3.2rem)] leading-[0.95]`}>
+          <h2 id="inclusion-title" className={`${h2} mt-5 text-[clamp(2rem,4vw,3.2rem)] leading-[0.95]`}>
             <span className="lit-text">Uma escola para todos começa por</span> ouvir todos<span className="text-orange">.</span>
           </h2>
-          <p className="mt-6 max-w-lg text-base leading-relaxed text-white/65 sm:text-lg">Educação inclusiva é garantir que cada estudante participe, aprenda e seja acompanhado com respeito. A tecnologia só ajuda se nascer dessa escuta.</p>
+          <p className="mt-6 max-w-lg text-base leading-relaxed text-white/80 sm:text-lg">Educação inclusiva é garantir que cada estudante participe, aprenda e seja acompanhado com respeito. A tecnologia só ajuda se nascer dessa escuta.</p>
           <ul className="mt-10 border-t border-white/15">
             {principles.map((p, i) => (
               <li key={p.t} className="grid grid-cols-1 border-b border-white/15 py-5">
                 <div>
                   <h3 className="font-display text-lg font-bold tracking-tight">{p.t}</h3>
-                  <p className="mt-1 text-sm leading-relaxed text-white/60">{p.d}</p>
+                  <p className="mt-1 text-sm leading-relaxed text-white/80">{p.d}</p>
                 </div>
               </li>
             ))}
@@ -195,22 +195,35 @@ export function Demo() {
   const [tab, setTab] = useState<keyof typeof views>("responsavel");
   const v = views[tab];
   return (
-    <section className="relative isolate overflow-hidden bg-coal py-24 text-white sm:py-32">
+    <section aria-labelledby="demo-title" className="relative isolate overflow-hidden bg-coal py-24 text-white sm:py-32">
       <div aria-hidden className="absolute inset-0 -z-10 grid-dark [mask-image:radial-gradient(ellipse_at_50%_20%,#000,transparent_75%)]" />
       <Badge3D kind="bubble" blur float className="absolute -right-4 top-10 hidden w-24 sm:block lg:right-[8%] lg:w-28" />
       <div className="wrap">
         <Reveal className="max-w-3xl">
           <Label>prévia</Label>
-          <h2 className={`${h2} mt-5 text-[clamp(2rem,4.2vw,3.4rem)] leading-[0.95]`}>
+          <h2 id="demo-title" className={`${h2} mt-5 text-[clamp(2rem,4.2vw,3.4rem)] leading-[0.95]`}>
             Uma prévia de <span className="lit-text">como poderia funcionar</span><span className="text-orange">.</span>
           </h2>
-          <p className="mt-6 max-w-xl text-base leading-relaxed text-white/65 sm:text-lg">Telas de exemplo com dados inventados, só para você visualizar a ideia. Não existe sistema por trás delas.</p>
+          <p className="mt-6 max-w-xl text-base leading-relaxed text-white/80 sm:text-lg">Telas de exemplo com dados inventados, só para você visualizar a ideia. Não existe sistema por trás delas.</p>
         </Reveal>
 
         <div className="mt-10 flex w-full max-w-sm border border-white/20 p-1" role="tablist" aria-label="Perfil da demonstração">
-          {(Object.keys(views) as (keyof typeof views)[]).map((k) => (
-            <button key={k} role="tab" id={`tab-${k}`} aria-selected={tab === k} aria-controls="demo-panel" onClick={() => setTab(k)}
-              className={`relative isolate min-h-11 flex-1 px-5 py-2 font-sans text-xs font-semibold transition-colors ${tab === k ? "text-black" : "text-white/65 hover:text-white"}`}>
+          {(Object.keys(views) as (keyof typeof views)[]).map((k, i, all) => (
+            <button key={k} role="tab" id={`tab-${k}`} tabIndex={tab === k ? 0 : -1} aria-selected={tab === k} aria-controls="demo-panel"
+              onKeyDown={(e) => {
+                let next: number | undefined;
+                if (e.key === "ArrowRight") next = (i + 1) % all.length;
+                else if (e.key === "ArrowLeft") next = (i - 1 + all.length) % all.length;
+                else if (e.key === "Home") next = 0;
+                else if (e.key === "End") next = all.length - 1;
+                if (next !== undefined) {
+                  e.preventDefault();
+                  setTab(all[next]);
+                  document.getElementById(`tab-${all[next]}`)?.focus();
+                }
+              }}
+              onClick={() => setTab(k)}
+              className={`relative isolate min-h-11 flex-1 px-5 py-2 font-sans text-xs font-semibold transition-colors ${tab === k ? "text-black" : "text-white/80 hover:text-white"}`}>
               {tab === k && <motion.span layoutId="tab-pill" className="absolute inset-0 -z-10 bg-orange" transition={{ type: "spring", stiffness: 380, damping: 32 }} />}
               {views[k].label}
             </button>
@@ -225,9 +238,9 @@ export function Demo() {
             </div>
             <dl className="grid grid-cols-3 divide-x divide-white/10 border-b border-white/10">
               {v.stats.map(([k, val]) => (
-                <div key={k} className="min-w-0 px-2 py-5 text-center sm:px-4 sm:py-7">
-                  <dd className="font-display text-[clamp(1.6rem,6.5vw,3.6rem)] font-semibold leading-none tracking-[-0.04em]"><CountUp key={`${tab}-${k}`} text={val} /></dd>
-                  <dt className="mt-2 text-[11px] leading-tight text-white/55 sm:text-xs">{k}</dt>
+                <div key={k} className="flex min-w-0 flex-col px-2 py-5 text-center sm:px-4 sm:py-7">
+                  <dt className="order-2 mt-2 text-[11px] leading-tight text-white/80 sm:text-xs">{k}</dt>
+                  <dd className="order-1 font-display text-[clamp(1.6rem,6.5vw,3.6rem)] font-semibold leading-none tracking-[-0.04em]"><CountUp key={`${tab}-${k}`} text={val} /></dd>
                 </div>
               ))}
             </dl>
@@ -243,7 +256,7 @@ export function Demo() {
                 ))}
               </ul>
               <div>
-                <p className="font-sans text-xs text-white/50">Comunicados</p>
+                <p className="font-sans text-xs text-white/80">Comunicados</p>
                 <ul className="mt-3 divide-y divide-white/10 border-t border-white/10 text-sm text-white/80">
                   {v.list.map((l) => <li key={l} className="py-3.5">{l}</li>)}
                 </ul>
@@ -259,13 +272,13 @@ export function Demo() {
 /* ───────── Pesquisa ───────── */
 export function Research() {
   return (
-    <section id="pesquisa" className="on-orange grid-orange relative isolate overflow-hidden bg-sand py-24 text-black sm:py-32">
+    <section id="pesquisa" aria-labelledby="research-title" className="on-orange grid-orange relative isolate overflow-hidden bg-sand py-24 text-black sm:py-32">
       <div className="wrap">
         <Frame tone="orange" className="px-5 py-12 sm:px-12 sm:py-16 lg:px-16 lg:py-20">
           <Badge3D kind="bubble" tone="orange" blur float className="absolute right-8 top-10 hidden w-24 md:block lg:right-16 lg:w-32" />
           <Reveal>
             <Label tone="orange">pesquisa</Label>
-            <h2 className={`${h2} mt-5 max-w-4xl text-[clamp(2rem,5vw,4rem)] leading-[0.92]`}>
+            <h2 id="research-title" className={`${h2} mt-5 max-w-4xl text-[clamp(2rem,5vw,4rem)] leading-[0.92]`}>
               <span>Sua experiência</span> <span className="text-black">vai orientar o projeto</span>
             </h2>
           </Reveal>
@@ -279,10 +292,10 @@ export function Research() {
 
 export function FinalCTA() {
   return (
-    <section className="grain relative isolate overflow-hidden bg-ink pt-24 text-white sm:pt-32">
+    <section aria-labelledby="final-title" className="grain relative isolate overflow-hidden bg-ink pt-24 text-white sm:pt-32">
       <div className="wrap">
         <Reveal>
-          <h2 className="font-display font-semibold">
+          <h2 id="final-title" className="font-display font-semibold">
             <span className="ghost-text block text-[clamp(1.4rem,3.6vw,2.8rem)] leading-[1.02] tracking-[-0.03em]">Quanto mais vozes,</span>
             <span className="block text-[clamp(2.2rem,7vw,5.5rem)] leading-[0.9] tracking-[-0.035em] text-balance">melhor a proposta<span className="text-orange">.</span></span>
           </h2>
