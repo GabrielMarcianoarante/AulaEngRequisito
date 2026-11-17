@@ -9,7 +9,7 @@ export default function Home() {
     <>
       <ScrollProgress />
       <Navbar />
-      <main id="main">
+      <main id="main" tabIndex={-1}>
         <Hero />
         <Problem />
         <Proposal />

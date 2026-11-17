@@ -41,7 +41,7 @@ export function Problem() {
   const on = useInView(ref, { once: true, amount: 0.1 });
   const lit = (d: number) => ({ initial: { opacity: 0 }, animate: on ? { opacity: 1 } : {}, transition: { duration: reduce ? 0 : 0.9, delay: reduce ? 0 : d } });
   return (
-    <section id="visao-geral" aria-labelledby="problem-title" className="relative isolate overflow-hidden bg-ink pt-24 text-white sm:pt-32">
+    <section id="visao-geral" tabIndex={-1} aria-labelledby="problem-title" className="relative isolate overflow-hidden bg-ink pt-24 text-white sm:pt-32">
       <div aria-hidden className="grid-dark absolute inset-0 -z-10 [mask-image:linear-gradient(to_bottom,#000,transparent_85%)]" />
       <div className="wrap">
         <Reveal className="max-w-5xl">
@@ -82,7 +82,7 @@ const rise = { hidden: { opacity: 0, y: 24 }, show: { opacity: 1, y: 0, transiti
 
 export function Proposal() {
   return (
-    <section id="funcionalidades" aria-labelledby="proposal-title" className="on-orange grid-orange relative isolate overflow-hidden bg-sand py-24 text-black sm:py-32">
+    <section id="funcionalidades" tabIndex={-1} aria-labelledby="proposal-title" className="on-orange grid-orange relative isolate overflow-hidden bg-sand py-24 text-black sm:py-32">
       <div className="wrap grid gap-14 lg:grid-cols-[5fr_7fr] lg:gap-12">
         <Reveal className="lg:sticky lg:top-28 lg:self-start">
           <Label tone="orange">a proposta</Label>
@@ -141,7 +141,7 @@ function Venn() {
 
 export function Inclusion() {
   return (
-    <section id="inclusao" aria-labelledby="inclusion-title" className="grain relative isolate overflow-hidden bg-ink py-24 text-white sm:py-32">
+    <section id="inclusao" tabIndex={-1} aria-labelledby="inclusion-title" className="grain relative isolate overflow-hidden bg-ink py-24 text-white sm:py-32">
       <div aria-hidden className="absolute inset-0 -z-10 grid-dark [mask-image:radial-gradient(ellipse_at_20%_30%,#000,transparent_70%)]" />
       <div className="wrap grid items-center gap-16 lg:grid-cols-2 lg:gap-12">
         <Reveal>
@@ -272,7 +272,7 @@ export function Demo() {
 /* ───────── Pesquisa ───────── */
 export function Research() {
   return (
-    <section id="pesquisa" aria-labelledby="research-title" className="on-orange grid-orange relative isolate overflow-hidden bg-sand py-24 text-black sm:py-32">
+    <section id="pesquisa" tabIndex={-1} aria-labelledby="research-title" className="on-orange grid-orange relative isolate overflow-hidden bg-sand py-24 text-black sm:py-32">
       <div className="wrap">
         <Frame tone="orange" className="px-5 py-12 sm:px-12 sm:py-16 lg:px-16 lg:py-20">
           <Badge3D kind="bubble" tone="orange" blur float className="absolute right-8 top-10 hidden w-24 md:block lg:right-16 lg:w-32" />

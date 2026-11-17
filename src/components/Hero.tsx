@@ -68,7 +68,7 @@ export function Hero() {
   });
 
   return (
-    <section id="topo" aria-labelledby="hero-title" className="grain relative isolate overflow-hidden bg-ink pb-20 pt-24 text-white sm:pb-28 sm:pt-32">
+    <section id="topo" tabIndex={-1} aria-labelledby="hero-title" className="grain relative isolate overflow-hidden bg-ink pb-20 pt-24 text-white sm:pb-28 sm:pt-32">
       <div aria-hidden className="absolute inset-0 -z-10 grid-dark [mask-image:radial-gradient(ellipse_at_50%_28%,#000_15%,transparent_72%)]" />
 
       <div className="wrap">
